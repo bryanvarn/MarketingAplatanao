@@ -622,6 +622,82 @@ const SharingService = {
   }
 };
 
+/* ============================= EXPORT (formulario completo en TXT) ============================= */
+const ExportModule = {
+  qa(label, value){ return label+'\n'+val(value)+'\n\n'; },
+  buildQAText(a){
+    const p = a.personal||{}, neg = a.negocio||{}, pres = a.presencia||{}, pub = a.publico||{}, ren = a.rendimiento||{}, voz = a.voz||{}, cap = a.capacidad||{}, obj = a.objetivo||{}, oro = a.oro||{};
+    const sep = '='.repeat(60);
+    const section = (title)=> '\n'+sep+'\n'+title+'\n'+sep+'\n\n';
+    const L = [];
+    L.push('DIAGNÓSTICO DE MARKETING APLATANAO');
+    L.push('Respuestas completas del formulario — '+val(p.nombre)+' — '+val(neg.nombre));
+    L.push('Fecha de registro: '+formatDate(a.fechaRegistro));
+    L.push('');
+    L.push(section('1. INFORMACIÓN PERSONAL').trim());
+    L.push('');
+    L.push(this.qa('Nombre completo', p.nombre));
+    L.push(this.qa('WhatsApp', p.whatsapp));
+    L.push(this.qa('Email', p.email));
+    L.push(this.qa('Ciudad', p.ciudad));
+    L.push(this.qa('Instagram', p.instagram));
+    L.push(this.qa('TikTok', p.tiktok));
+    L.push(this.qa('Facebook', p.facebook));
+    L.push(this.qa('Página web', p.website));
+    L.push(section('2. CONOZCAMOS TU NEGOCIO').trim()); L.push('');
+    L.push(this.qa('Nombre de tu negocio', neg.nombre));
+    L.push(this.qa('¿Qué vendes?', neg.queVendes));
+    L.push(this.qa('¿Cuál es tu producto/servicio estrella?', neg.productoEstrella));
+    L.push(this.qa('¿Qué producto/servicio te deja mayor ganancia?', neg.productoMayorGanancia));
+    L.push(this.qa('¿Cuál es el precio promedio de lo que vendes?', neg.precioPromedio));
+    L.push(this.qa('¿Quién es tu cliente ideal?', neg.clienteIdeal));
+    L.push(this.qa('¿Qué problema o necesidad le resuelves?', neg.problemaResuelve));
+    L.push(this.qa('¿Por qué debería comprarte a ti y no a otra persona?', neg.porQueComprarte));
+    L.push(this.qa('¿Qué es lo que más te preguntan por WhatsApp o DM?', neg.preguntaFrecuenteWhatsapp));
+    L.push(this.qa('¿Cuál es la principal objeción que recibes?', neg.objecionPrincipal==='Otra'? neg.objecionOtra : neg.objecionPrincipal));
+    L.push(section('3. TU PRESENCIA DIGITAL').trim()); L.push('');
+    L.push(this.qa('¿En cuál plataforma publicas más contenido actualmente?', pres.plataformaPrincipal==='Otra'? pres.plataformaPrincipalOtra : pres.plataformaPrincipal));
+    L.push(this.qa('¿Cuáles otras plataformas utilizas?', (pres.otrasPlataformas||[]).join(', ')));
+    L.push(this.qa('¿Cuántos seguidores tienes actualmente en tu plataforma principal?', pres.seguidoresActuales));
+    L.push(this.qa('¿Cuántas cuentas sigues actualmente?', pres.cuentasQueSigue));
+    L.push(this.qa('¿Cuál es tu alcance actualmente? (últimos 30 días)', pres.alcanceConocido==='Conozco el dato de los últimos 30 días'? pres.alcance30dias+' personas' : 'No sabe dónde verlo'));
+    L.push(section('4. CONOZCAMOS A TU PÚBLICO').trim()); L.push('');
+    L.push(this.qa('¿Cuál es el público que más te sigue/interactúa contigo?', pub.generoAudiencia));
+    L.push(this.qa('Selecciona tus 3 principales rangos de edad', (pub.rangosEdad||[]).join(', ')));
+    L.push(this.qa('¿De qué ciudad/provincia o país proviene principalmente tu público?', pub.ciudadPublico));
+    L.push(this.qa('¿Tu público actual es el mismo que quieres atraer?', pub.publicoActualEsDeseado));
+    if(pub.publicoActualEsDeseado==='No') L.push(this.qa('¿A quién quieres atraer?', pub.aQuienQuiereAtraer));
+    L.push(section('5. TU RENDIMIENTO EN CONTENIDO').trim()); L.push('');
+    L.push(this.qa('¿Tienes Reels que hayan superado las 10,000 reproducciones?', ren.reelsSuperan10k));
+    if(ren.reelsSuperan10k==='Sí') L.push(this.qa('¿Cuántos tienes en los últimos 90 días?', ren.cuantosReels10k));
+    L.push(this.qa('¿Cuál ha sido tu Reel con más reproducciones en los últimos 90 días?', ren.mejorReelReproducciones));
+    L.push(this.qa('¿Qué tipo de contenido fue?', ren.tipoContenidoMejorReel==='Otro'? ren.tipoContenidoMejorReelOtro : ren.tipoContenidoMejorReel));
+    L.push(this.qa('¿Cuál es aproximadamente tu promedio de reproducciones por Reel?', ren.promedioConocido==='Conozco el promedio'? ren.promedioReproducciones : 'No lo sabe'));
+    L.push(section('6. TU VOZ').trim()); L.push('');
+    L.push(this.qa('¿Cómo describes tu forma de hablar?', (voz.formaHablar||[]).join(', ')));
+    L.push(this.qa('Escribe 3 frases que dices muchísimo', voz.frasesQueDices));
+    L.push(this.qa('¿Cómo le responderías a una clienta que pregunta por tu producto/servicio?', voz.comoResponderiasCliente));
+    L.push(this.qa('Completa: "Si mi mejor amiga quisiera comprarme esto, yo le diría…"', voz.completaFrase));
+    L.push(this.qa('¿Qué tipo de contenido te gusta crear?', (voz.tipoContenidoQueGusta||[]).join(', ')));
+    L.push(section('7. TU CAPACIDAD REAL PARA CREAR').trim()); L.push('');
+    L.push(this.qa('¿Cuántos días a la semana puedes crear contenido?', cap.diasPorSemana));
+    L.push(this.qa('¿Cuánto tiempo puedes dedicar diariamente?', cap.tiempoDiario));
+    L.push(this.qa('¿Qué tienes disponible para crear contenido?', (cap.recursosDisponibles||[]).join(', ')));
+    L.push(section('8. OBJETIVO DE OCTUBRE-ENERO').trim()); L.push('');
+    L.push(this.qa('¿Qué quieres conseguir principalmente durante octubre-enero?', obj.objetivoPrincipal==='Otro'? obj.objetivoOtro : obj.objetivoPrincipal));
+    L.push(this.qa('¿Qué temporada te interesa aprovechar más?', (obj.temporadaInteres||[]).join(', ')));
+    L.push(this.qa('¿Tienes pensado hacer promociones especiales durante estas fechas?', obj.promocionesEspeciales));
+    if(obj.promocionesEspeciales==='Sí') L.push(this.qa('¿Qué tienes pensado?', obj.queTienesPensado));
+    L.push(section('9. PREGUNTAS DE ORO').trim()); L.push('');
+    L.push(this.qa('¿Qué parte de tu negocio te da más orgullo?', oro.orgullo));
+    L.push(this.qa('¿Qué error cometiste al comenzar que hoy no volverías a cometer?', oro.errorInicio));
+    L.push(this.qa('¿Qué mito o mentira sobre tu industria te gustaría desmontar?', oro.mitoIndustria));
+    L.push(this.qa('¿Qué pregunta te gustaría que tus clientes dejaran de hacerte?', oro.preguntaQueNoQuiereMas));
+    L.push(this.qa('¿Qué quieres que una persona piense cuando vea tu contenido por primera vez?', oro.percepcionPrimeraImpresion));
+    return L.join('\n').replace(/\n{3,}/g,'\n\n').trim()+'\n';
+  }
+};
+
 /* ============================= STRATEGY ============================= */
 const SECTION_DEFS = [
   {key:'diagnostico',      num:'01', title:'Diagnóstico',            re:/diagn[oó]stico/i},
@@ -1103,6 +1179,12 @@ const Admin = {
       }catch(e){ toast('No se pudo marcar como entregada: '+e.message, 'danger'); }
     }, {confirmLabel:'Sí, marcar como entregada'});
   },
+  bulkExportQA(){
+    const ids=[...AdminState.selected]; if(!ids.length) return;
+    const items = ids.map(id=>NotionService.getAssistant(id)).filter(Boolean);
+    const text = items.map(a=>ExportModule.buildQAText(a)).join('\n\n'+'#'.repeat(60)+'\n\n');
+    offerTextExport('respuestas-formulario-marketing-aplatanao.txt', text, '✓ Respuestas exportadas');
+  },
   bulkCopyDiagnoses(){
     const ids=[...AdminState.selected]; if(!ids.length) return;
     const items = ids.map(id=>NotionService.getAssistant(id)).filter(Boolean);
@@ -1170,6 +1252,7 @@ function renderAdminDashboard(){
 function statTile(value, label){ return '<div class="stat-tile"><div class="stat-value">'+value+'</div><div class="stat-label">'+esc(label)+'</div></div>'; }
 function renderBulkBar(){
   return '<div class="bulk-bar"><strong>'+AdminState.selected.size+' seleccionados</strong>'+
+    '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkExportQA()">Exportar respuestas (TXT)</button>'+
     '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkCopyDiagnoses()">Descargar diagnósticos</button>'+
     '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkCopyPrompts()">Copiar prompts</button>'+
     '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkPrepareStrategy()">Preparar estrategias</button>'+
@@ -1229,6 +1312,7 @@ function renderAdminProfile(id, initialTab){
     '<button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin\')" style="margin-bottom:16px;">← Volver al panel</button>'+
     '<div class="profile-head"><div class="profile-title"><h2 class="section-title" style="font-size:24px;">'+esc(a.personal.nombre)+'</h2></div>'+
     '<div class="profile-actions">'+
+      '<button class="btn btn-secondary btn-sm" onclick="exportQA(\''+a.id+'\')">Exportar respuestas (TXT)</button>'+
       '<button class="btn btn-secondary btn-sm" onclick="Admin.copyPrompt(\''+a.id+'\')">Copiar para ChatGPT</button>'+
       '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/estrategia/'+a.id+'\')">Generar estrategia</button>'+
       '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/pdf/'+a.id+'\')">PDF</button>'+
@@ -1301,6 +1385,10 @@ function renderProfileTabBody(a){
 }
 function diagBlock(title, text){ return '<div class="diag-block"><h4>'+esc(title)+'</h4><p>'+esc(text)+'</p></div>'; }
 function copyDiagnosis(id){ const a=NotionService.getAssistant(id); copyToClipboard(Diagnostic.asText(a)).then(ok=> toast(ok?'✓ Diagnóstico copiado':'No se pudo copiar', ok?'good':'danger')); }
+function exportQA(id){
+  const a = NotionService.getAssistant(id); if(!a) return;
+  offerTextExport('respuestas-'+slugify(a.negocio && a.negocio.nombre)+'.txt', ExportModule.buildQAText(a), '✓ Respuestas exportadas');
+}
 
 /* ============================= ADMIN: STRATEGY GENERATOR ============================= */
 function renderStrategyGenerator(id){
