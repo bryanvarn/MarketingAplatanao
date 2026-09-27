@@ -1,0 +1,1572 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing Aplatanao — Content Strategy Hub</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%8C%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============================= TOKENS ============================= */
+:root{
+  --ink:#17140f; --ink-soft:#4a4335; --paper:#fbf8f3; --surface:#ffffff; --surface-2:#f3eee3;
+  --border:#e6ded0; --border-strong:#d5c9b3; --muted:#8a806e;
+  --accent:#f2661a; --accent-deep:#c94e10; --accent-soft:#ffe6cf; --accent-ink:#7a2c00;
+  --good:#1f8a5f; --good-soft:#dbf3e6; --good-ink:#0d4a30;
+  --warn:#b1790a; --warn-soft:#faedcb; --warn-ink:#5c3c00;
+  --info:#3457d5; --info-soft:#e2e8fd; --info-ink:#1c2f7a;
+  --violet:#7d4fd1; --violet-soft:#ece2fb; --violet-ink:#40217f;
+  --danger:#c8422c; --danger-soft:#fbe1db; --danger-ink:#6e2013;
+  --neutral-soft:#eee9dd; --neutral-ink:#5c5346;
+  --shadow: 0 1px 2px rgba(23,20,15,.04), 0 8px 24px -12px rgba(23,20,15,.18);
+  --radius:14px; --radius-sm:9px; --radius-lg:20px;
+  --font-display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#f4efe4; --ink-soft:#c9c0ac; --paper:#131110; --surface:#1c1815; --surface-2:#221d18;
+    --border:#332c24; --border-strong:#463c30; --muted:#9c9280;
+    --accent:#ff7a2e; --accent-deep:#ff9a5c; --accent-soft:#3a2210; --accent-ink:#ffd2a3;
+    --good:#3fbf8a; --good-soft:#153327; --good-ink:#8fe8c3;
+    --warn:#e0ac3d; --warn-soft:#3a2c0c; --warn-ink:#f3d18b;
+    --info:#7d97f2; --info-soft:#1c2440; --info-ink:#b7c4fa;
+    --violet:#b092ec; --violet-soft:#291f42; --violet-ink:#dccdf9;
+    --danger:#e5836f; --danger-soft:#3a1c15; --danger-ink:#f5bcae;
+    --neutral-soft:#26221c; --neutral-ink:#c9c0ac;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#f4efe4; --ink-soft:#c9c0ac; --paper:#131110; --surface:#1c1815; --surface-2:#221d18;
+  --border:#332c24; --border-strong:#463c30; --muted:#9c9280;
+  --accent:#ff7a2e; --accent-deep:#ff9a5c; --accent-soft:#3a2210; --accent-ink:#ffd2a3;
+  --good:#3fbf8a; --good-soft:#153327; --good-ink:#8fe8c3;
+  --warn:#e0ac3d; --warn-soft:#3a2c0c; --warn-ink:#f3d18b;
+  --info:#7d97f2; --info-soft:#1c2440; --info-ink:#b7c4fa;
+  --violet:#b092ec; --violet-soft:#291f42; --violet-ink:#dccdf9;
+  --danger:#e5836f; --danger-soft:#3a1c15; --danger-ink:#f5bcae;
+  --neutral-soft:#26221c; --neutral-ink:#c9c0ac;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.5;padding:0 16px;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;margin:0;text-wrap:balance;color:var(--ink);}
+p{margin:0;}
+a{color:var(--accent-deep);}
+button{font-family:inherit;}
+::selection{background:var(--accent-soft);color:var(--accent-ink);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+@media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
+.mono{font-family:var(--font-mono);}
+.container{max-width:1180px;margin:0 auto;}
+.container-narrow{max-width:680px;margin:0 auto;}
+
+/* ============================= TOPBAR ============================= */
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);margin:0 -16px;padding:0 16px;}
+.topbar-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
+.brand-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(155deg, var(--accent), var(--accent-deep));display:flex;align-items:center;justify-content:center;font-size:18px;flex:none;box-shadow:var(--shadow);}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.01em;}
+.brand-sub{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700;}
+.top-actions{display:flex;align-items:center;gap:10px;}
+.mode-pill{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 11px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);color:var(--muted);}
+.mode-pill.is-admin{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+/* ============================= BUTTONS ============================= */
+.btn{appearance:none;border:1px solid transparent;border-radius:999px;padding:11px 20px;font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;transition:transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;text-decoration:none;line-height:1;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 16px -6px color-mix(in srgb, var(--accent) 70%, transparent);}
+.btn-primary:hover{background:var(--accent-deep);}
+.btn-secondary{background:var(--surface);color:var(--ink);border-color:var(--border-strong);}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent-deep);}
+.btn-ghost{background:transparent;color:var(--muted);border-color:transparent;}
+.btn-ghost:hover{background:var(--surface-2);color:var(--ink);}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-danger:hover{background:var(--danger-ink);}
+.btn-dark{background:var(--ink);color:var(--paper);}
+.btn-dark:hover{opacity:.88;}
+.btn-sm{padding:7px 12px;font-size:10.5px;border-radius:999px;}
+.btn-icon{padding:8px;border-radius:10px;}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+.btn-block{width:100%;}
+.link-btn{background:none;border:none;padding:0;color:var(--accent-deep);font-weight:700;cursor:pointer;font-size:13px;text-decoration:underline;text-underline-offset:3px;}
+
+/* ============================= CARDS / MISC ============================= */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);}
+.card-pad{padding:24px;}
+.section-eyebrow{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:var(--accent-deep);}
+.section-title{font-size:26px;margin-top:6px;}
+.muted{color:var(--muted);}
+.small{font-size:12.5px;}
+hr.rule{border:none;border-top:1px solid var(--border);margin:20px 0;}
+
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+.badge-neutral{background:var(--neutral-soft);color:var(--neutral-ink);}
+.badge-info{background:var(--info-soft);color:var(--info-ink);}
+.badge-violet{background:var(--violet-soft);color:var(--violet-ink);}
+.badge-accent{background:var(--accent-soft);color:var(--accent-ink);}
+.badge-warn{background:var(--warn-soft);color:var(--warn-ink);}
+.badge-good{background:var(--good-soft);color:var(--good-ink);}
+.badge-danger{background:var(--danger-soft);color:var(--danger-ink);}
+.tag-demo{display:inline-flex;align-items:center;padding:3px 8px;border-radius:6px;background:var(--ink);color:var(--paper);font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+
+/* ============================= FORM CONTROLS ============================= */
+.field{display:flex;flex-direction:column;gap:7px;}
+.field-label{font-size:12.5px;font-weight:700;color:var(--ink-soft);}
+.req{color:var(--accent-deep);}
+.input,.textarea,.select{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;font-family:inherit;font-size:14.5px;color:var(--ink);}
+.textarea{resize:vertical;min-height:88px;line-height:1.5;}
+.input:focus,.textarea:focus,.select:focus{border-color:var(--accent);}
+.hint{font-size:11.5px;color:var(--muted);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media (max-width:640px){ .grid-2,.grid-3{grid-template-columns:1fr;} }
+.chip-group{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{border:1.5px solid var(--border-strong);background:var(--surface);color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;transition:.12s;}
+.chip:hover{border-color:var(--accent);}
+.chip.is-selected{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.chip.is-selected.accent-chip{background:var(--accent);border-color:var(--accent);}
+.checkline{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;}
+
+/* ============================= LANDING ============================= */
+.hero{padding:64px 0 40px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent-ink);padding:7px 14px;border-radius:999px;font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;}
+.hero h1{font-size:clamp(34px,6vw,54px);margin-top:20px;line-height:1.06;}
+.hero-lead{font-size:17px;color:var(--ink-soft);max-width:56ch;margin-top:18px;line-height:1.6;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:32px;}
+.meta-item{display:flex;flex-direction:column;gap:2px;}
+.meta-value{font-family:var(--font-display);font-size:22px;font-weight:600;}
+.meta-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.hero-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+.landing-steps{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media (max-width:900px){ .landing-steps{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .landing-steps{grid-template-columns:1fr;} }
+.step-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:var(--surface);}
+.step-num{font-family:var(--font-mono);font-size:12px;color:var(--accent-deep);font-weight:700;}
+.step-card h4{font-size:15px;margin-top:8px;}
+.step-card p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;}
+.landing-footer{margin-top:60px;padding:22px 0 50px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+
+/* ============================= FORM (STEPS) ============================= */
+.page{padding:36px 0 80px;}
+.page-narrow{max-width:640px;margin:0 auto;padding:36px 0 90px;}
+.stepper{margin-bottom:28px;}
+.stepper-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.stepper-title{font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+.stepper-count{font-family:var(--font-mono);font-size:12px;color:var(--muted);}
+.stepper-track{height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden;}
+.stepper-fill{height:100%;background:linear-gradient(90deg, var(--accent), var(--accent-deep));border-radius:99px;transition:width .3s ease;}
+.form-step-title{font-size:24px;margin-top:18px;}
+.form-step-sub{color:var(--muted);font-size:13.5px;margin-top:6px;}
+.form-fields{margin-top:26px;display:flex;flex-direction:column;gap:18px;}
+.form-nav{display:flex;justify-content:space-between;margin-top:34px;gap:12px;}
+
+/* ============================= CONFIRMATION ============================= */
+.confirm-badge{width:56px;height:56px;border-radius:16px;background:var(--good-soft);color:var(--good-ink);display:flex;align-items:center;justify-content:center;font-size:26px;}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;}
+@media (max-width:560px){ .summary-grid{grid-template-columns:1fr;} }
+.summary-row{display:flex;flex-direction:column;gap:3px;padding:14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface-2);}
+.summary-row span.k{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;}
+.summary-row span.v{font-size:14px;font-weight:600;}
+
+/* ============================= ADMIN GATE ============================= */
+.gate-wrap{max-width:400px;margin:70px auto;text-align:center;}
+.gate-wrap .card{text-align:left;margin-top:20px;}
+
+/* ============================= ADMIN DASHBOARD ============================= */
+.admin-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:26px;}
+.quick-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+@media (max-width:860px){ .stats-grid{grid-template-columns:repeat(2,1fr);} }
+.stat-tile{padding:18px 20px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);}
+.stat-value{font-family:var(--font-display);font-size:32px;font-variant-numeric:tabular-nums;}
+.stat-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;font-weight:700;}
+.filter-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.search-input{max-width:320px;}
+.filter-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.filter-chips .chip{padding:7px 13px;font-size:12px;}
+.bulk-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--ink);color:var(--paper);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:16px;}
+.bulk-bar strong{font-weight:800;}
+.bulk-bar .btn-secondary{background:transparent;border-color:color-mix(in srgb, var(--paper) 30%, transparent);color:var(--paper);}
+.bulk-bar .btn-secondary:hover{background:color-mix(in srgb, var(--paper) 12%, transparent);}
+
+.table-wrap{display:block;overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);}
+table.assistants{width:100%;border-collapse:collapse;min-width:760px;}
+table.assistants th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:800;padding:13px 16px;border-bottom:1px solid var(--border);background:var(--surface-2);}
+table.assistants td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:13.5px;vertical-align:middle;}
+table.assistants tr:last-child td{border-bottom:none;}
+.name-cell strong{display:block;font-size:14px;}
+.name-cell .muted{font-size:11.5px;}
+.actions-row{display:flex;flex-wrap:wrap;gap:5px;}
+.assistant-cards{display:none;flex-direction:column;gap:12px;}
+@media (max-width:760px){
+  .table-wrap{display:none;}
+  .assistant-cards{display:flex;}
+}
+.a-card{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:16px;}
+.a-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}
+.a-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px;}
+.a-card-actions .btn{width:100%;}
+.select-check{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;}
+
+.empty-state{text-align:center;padding:64px 20px;border:1px dashed var(--border-strong);border-radius:var(--radius);color:var(--muted);}
+.empty-state h3{color:var(--ink);font-size:18px;margin-bottom:6px;}
+
+/* ============================= PROFILE ============================= */
+.profile-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start;margin-bottom:22px;}
+.profile-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.profile-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--border);margin-bottom:22px;}
+.tab{padding:11px 16px;font-size:12.5px;font-weight:700;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;}
+.tab:hover{color:var(--ink);}
+.tab.is-active{color:var(--accent-deep);border-color:var(--accent);}
+.kv-list{display:flex;flex-direction:column;gap:14px;}
+.kv-row{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);}
+@media (max-width:600px){ .kv-row{grid-template-columns:1fr;gap:4px;} }
+.kv-row:last-child{border-bottom:none;}
+.kv-row .k{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
+.kv-row .v{font-size:14.5px;line-height:1.55;}
+.diag-block{margin-bottom:22px;}
+.diag-block h4{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-deep);margin-bottom:6px;}
+.diag-block p{font-size:14.5px;line-height:1.6;}
+.pill-list{display:flex;flex-wrap:wrap;gap:6px;}
+.pill-list .pill{background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600;}
+
+/* ============================= PROMPT / STRATEGY ============================= */
+.prompt-box{background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:20px;font-family:var(--font-mono);font-size:12.5px;line-height:1.65;white-space:pre-wrap;max-height:460px;overflow-y:auto;border:1px solid var(--border-strong);}
+.prompt-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px;}
+.integration-note{display:flex;gap:12px;background:var(--info-soft);color:var(--info-ink);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;line-height:1.55;}
+.integration-note.warn{background:var(--warn-soft);color:var(--warn-ink);}
+.integration-note b{font-weight:800;}
+
+.accordion-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;background:var(--surface);overflow:hidden;}
+.accordion-head{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;user-select:none;}
+.accordion-num{font-family:var(--font-mono);font-size:12px;color:var(--accent-deep);font-weight:700;flex:none;}
+.accordion-head h4{font-size:14.5px;flex:1;}
+.accordion-chev{color:var(--muted);transition:transform .15s;flex:none;}
+.accordion-item.is-open .accordion-chev{transform:rotate(180deg);}
+.accordion-body{padding:0 18px 18px;display:none;}
+.accordion-item.is-open .accordion-body{display:block;}
+
+/* ============================= PDF / PRINT ============================= */
+.print-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:12px;}
+.doc-sheet{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:0;overflow:hidden;}
+.doc-cover{padding:80px 56px;background:var(--ink);color:var(--paper);text-align:center;}
+.doc-cover .brand-mark{margin:0 auto 26px;width:52px;height:52px;font-size:26px;}
+.doc-cover .doc-kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800;}
+.doc-cover h1{font-family:var(--font-display);font-size:clamp(30px,5vw,46px);margin-top:14px;color:var(--paper);}
+.doc-cover .doc-for{margin-top:44px;font-size:13px;color:color-mix(in srgb, var(--paper) 60%, transparent);text-transform:uppercase;letter-spacing:.08em;}
+.doc-cover .doc-name{font-family:var(--font-display);font-size:24px;margin-top:8px;color:var(--paper);}
+.doc-cover .doc-biz{font-size:15px;margin-top:4px;color:color-mix(in srgb, var(--paper) 78%, transparent);}
+.doc-cover .doc-date{margin-top:36px;font-size:12px;color:color-mix(in srgb, var(--paper) 55%, transparent);}
+.doc-chapter{padding:44px 56px;border-top:1px solid var(--border);}
+.doc-chapter-kicker{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);}
+.doc-chapter h2{font-size:26px;margin-top:8px;margin-bottom:22px;}
+.doc-section{margin-bottom:26px;}
+.doc-section h3{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:8px;}
+.doc-section .txt{font-size:14.5px;line-height:1.7;white-space:pre-wrap;}
+.doc-footer{padding:26px 56px;display:flex;justify-content:space-between;font-size:11px;color:var(--muted);border-top:1px solid var(--border);}
+@media print{
+  body *{visibility:hidden;}
+  .doc-sheet, .doc-sheet *{visibility:visible;}
+  .doc-sheet{position:absolute;left:0;top:0;width:100%;border:none;border-radius:0;box-shadow:none;}
+  .no-print{display:none !important;}
+  .doc-chapter{break-before:page;padding:26mm 20mm;}
+  .doc-cover{break-after:page;padding:40mm 20mm;}
+  @page{margin:0;}
+}
+
+/* ============================= DELIVER ============================= */
+.deliver-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media (max-width:760px){ .deliver-grid{grid-template-columns:1fr;} }
+.wa-preview{background:#e9f7ec;border-radius:var(--radius);padding:18px;font-size:13.5px;white-space:pre-wrap;line-height:1.6;color:#0b3d1c;border:1px solid #cfe9d6;}
+:root[data-theme="dark"] .wa-preview, @media (prefers-color-scheme:dark){ .wa-preview{background:#12241a;color:#bfe7cd;border-color:#254a34;} }
+
+/* ============================= PUBLIC VIEW ============================= */
+.public-shell{max-width:760px;margin:0 auto;padding:48px 0 90px;}
+.public-hero{text-align:center;margin-bottom:38px;}
+.waiting-card{text-align:center;padding:56px 20px;}
+.waiting-icon{font-size:38px;margin-bottom:14px;}
+
+/* ============================= TOAST / MODAL ============================= */
+.toast-stack{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:100;width:min(92vw,420px);}
+.toast{background:var(--ink);color:var(--paper);padding:13px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;box-shadow:var(--shadow);text-align:center;}
+.toast-good{background:var(--good);}
+.toast-warn{background:var(--warn);color:#241900;}
+.toast-danger{background:var(--danger);}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,12,8,.55);display:flex;align-items:center;justify-content:center;z-index:110;padding:20px;}
+.modal{background:var(--surface);border-radius:var(--radius);padding:26px;max-width:400px;width:100%;box-shadow:var(--shadow);}
+.modal-msg{font-size:15px;line-height:1.55;}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px;}
+
+/* ============================= SETTINGS ============================= */
+.settings-grid{display:flex;flex-direction:column;gap:20px;}
+.prop-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.prop-table th,.prop-table td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);}
+.prop-table th{color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-size:10.5px;}
+.code-block{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;font-family:var(--font-mono);font-size:12px;line-height:1.6;white-space:pre-wrap;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+<div id="toastStack" class="toast-stack" aria-live="polite"></div>
+<div id="modalRoot"></div>
+
+<script>
+/* =========================================================================
+   MARKETING APLATANAO — CONTENT STRATEGY HUB
+   Módulos: DATA · AUTH · FORMS · ADMIN · ASSISTANTS · DIAGNOSTIC · STRATEGY
+             · PDF · NOTION · OPENAI · SHARING
+   Persistencia real: Notion (vía server/, ver NotionService más abajo).
+   ========================================================================= */
+
+/* ----------------------------- utils ----------------------------- */
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function nl2br(s){ return esc(s).replace(/\n/g,'<br>'); }
+function uid(prefix){ return (prefix||'a')+'_'+Math.random().toString(36).slice(2,10); }
+function getPath(obj, path){ return path.split('.').reduce((o,k)=> (o && o[k]!==undefined)? o[k] : undefined, obj); }
+function setPath(obj, path, value){ const keys=path.split('.'); let o=obj; for(let i=0;i<keys.length-1;i++){ if(o[keys[i]]==null || typeof o[keys[i]]!=='object') o[keys[i]]={}; o=o[keys[i]]; } o[keys[keys.length-1]]=value; }
+function val(x, fallback){ const s = (x==null? '' : String(x)).trim(); return s? s : (fallback || 'No especificado en el formulario'); }
+function formatDate(iso){ if(!iso) return '—'; try{ return new Date(iso).toLocaleDateString('es-ES',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return '—'; } }
+function firstName(full){ return (full||'').trim().split(' ')[0] || full || ''; }
+async function copyToClipboard(text){
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch(e){
+    try{ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.focus(); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); return true; }
+    catch(e2){ return false; }
+  }
+}
+
+/* ----------------------------- toast / modal ----------------------------- */
+const UIState = { toasts: [], confirm: null };
+function toast(msg, kind){
+  const id = uid('t');
+  UIState.toasts.push({id, msg, kind: kind||'neutral'});
+  renderToasts();
+  setTimeout(()=>{ UIState.toasts = UIState.toasts.filter(t=>t.id!==id); renderToasts(); }, 3800);
+}
+function renderToasts(){
+  const el = document.getElementById('toastStack');
+  if(!el) return;
+  el.innerHTML = UIState.toasts.map(t=>'<div class="toast toast-'+t.kind+'">'+esc(t.msg)+'</div>').join('');
+}
+function showConfirm(message, onConfirm, opts){
+  opts = opts || {};
+  UIState.confirm = { message, onConfirm, confirmLabel: opts.confirmLabel||'Confirmar', cancelLabel: opts.cancelLabel||'Cancelar', danger: !!opts.danger };
+  renderModal();
+}
+function closeConfirm(){ UIState.confirm = null; renderModal(); }
+function confirmYes(){ const c = UIState.confirm; UIState.confirm=null; renderModal(); if(c && c.onConfirm) c.onConfirm(); }
+function renderModal(){
+  const root = document.getElementById('modalRoot');
+  if(!root) return;
+  const c = UIState.confirm;
+  root.innerHTML = c ? (
+    '<div class="modal-overlay" onclick="closeConfirm()"><div class="modal" onclick="event.stopPropagation()">'+
+    '<p class="modal-msg">'+esc(c.message)+'</p>'+
+    '<div class="modal-actions"><button class="btn btn-ghost" onclick="closeConfirm()">'+esc(c.cancelLabel)+'</button>'+
+    '<button class="btn '+(c.danger?'btn-danger':'btn-primary')+'" onclick="confirmYes()">'+esc(c.confirmLabel)+'</button></div></div></div>'
+  ) : '';
+}
+
+/* ============================= DATA ============================= */
+const STATE_ORDER = ['nuevo','diagnostico','listo','estrategia','pdf','entregado'];
+const STATE_META = {
+  nuevo:       {label:'Nuevo',                    cls:'badge-neutral'},
+  diagnostico: {label:'Diagnóstico completado',   cls:'badge-info'},
+  listo:       {label:'Listo para estrategia',    cls:'badge-violet'},
+  estrategia:  {label:'Estrategia generada',      cls:'badge-accent'},
+  pdf:         {label:'PDF generado',             cls:'badge-warn'},
+  entregado:   {label:'Entregado',                cls:'badge-good'},
+};
+function atLeastState(current, target){ return STATE_ORDER.indexOf(target) > STATE_ORDER.indexOf(current) ? target : current; }
+function stateBadge(estado){ const m = STATE_META[estado] || STATE_META.nuevo; return '<span class="badge '+m.cls+'">'+esc(m.label)+'</span>'; }
+
+const APP = { assistants:{}, assistantIds:[], fetching:{}, fetchError:{}, listLoaded:false, listLoading:false, listError:null, isAdmin:false, authChecked:false, health:null, healthLoading:false };
+
+async function apiFetch(path, opts){
+  opts = opts || {};
+  const res = await fetch(path, Object.assign({ credentials:'same-origin', headers:{'Content-Type':'application/json'} }, opts));
+  let data = null;
+  try{ data = await res.json(); }catch(e){ /* respuesta sin cuerpo JSON (p.ej. PDF binario, manejado aparte) */ }
+  if(!res.ok){ const err = new Error((data&&data.error) || ('Error '+res.status)); err.status = res.status; err.code = data&&data.code; throw err; }
+  return data;
+}
+
+/* ============================= NOTION =============================
+   Capa real: habla con nuestro propio backend (server/), que a su vez
+   llama al API de Notion con un token que vive solo en el servidor.
+   El resto de la aplicación (Forms, Admin, Strategy, PDF) solo conoce
+   esta interfaz — antes hablaba con localStorage, ahora con /api/assistants.
+   =========================================================================*/
+const NotionService = {
+  DATABASE_NAME: 'Marketing Aplatanao — Asistentes',
+  PROPERTIES: [
+    ['Nombre','Title'], ['Email','Email'], ['WhatsApp','Phone'], ['Negocio','Text'],
+    ['Ciudad','Text'], ['Instagram','URL'], ['TikTok','URL'], ['Facebook','URL'], ['Website','URL'],
+    ['Qué Vende','Text'], ['Producto Estrella','Text'], ['Cliente Ideal','Text'],
+    ['Objeción Principal','Select'], ['Plataforma Principal','Select'], ['Seguidores','Number'],
+    ['Alcance 30 Días','Number'], ['Género Audiencia','Select'], ['Rangos de Edad','Multi-select'],
+    ['Público es el Deseado','Select'], ['Reels +10K','Checkbox'], ['Forma de Hablar','Multi-select'],
+    ['Días Disponibles','Select'], ['Objetivo Temporada','Select'], ['Temporadas de Interés','Multi-select'],
+    ['Fecha','Date'], ['Estado','Status'], ['Diagnóstico','Text'], ['Estrategia','Text'],
+    ['PDF','Files & media'], ['Entregado','Checkbox'], ['Datos Completos (JSON)','Text'],
+  ],
+  cache(a){ if(!a || !a.id) return a; APP.assistants[a.id] = a; if(!APP.assistantIds.includes(a.id)) APP.assistantIds.unshift(a.id); return a; },
+  getAssistants(){ return APP.assistantIds.map(id=>APP.assistants[id]).filter(Boolean); },
+  getAssistant(id){ return APP.assistants[id] || null; },
+  async refreshList(){
+    APP.listLoading = true;
+    try{ const list = await apiFetch('/api/assistants'); APP.assistantIds = list.map(a=>a.id); list.forEach(a=>{ APP.assistants[a.id]=a; }); APP.listLoaded = true; }
+    finally{ APP.listLoading = false; }
+  },
+  async fetchAssistant(id){ const a = await apiFetch('/api/assistants/'+encodeURIComponent(id)); return NotionService.cache(a); },
+  async createAssistant(payload){ const a = await apiFetch('/api/assistants', {method:'POST', body: JSON.stringify(payload)}); return NotionService.cache(a); },
+  async updateAssistant(id, patch){ const a = await apiFetch('/api/assistants/'+encodeURIComponent(id), {method:'PATCH', body: JSON.stringify(patch)}); return NotionService.cache(a); },
+  saveDiagnosis(id, diagnostico){ return NotionService.updateAssistant(id, {diagnostico}); },
+  saveStrategy(id, estrategia){ return NotionService.updateAssistant(id, {estrategia}); },
+  savePdfUrl(id, pdf){ return NotionService.updateAssistant(id, {pdf}); },
+};
+
+/* ============================= OPENAI =============================
+   Capa real: pide al backend que llame a OpenAI (el API key nunca sale
+   del servidor). Si el servidor no tiene OPENAI_API_KEY configurada,
+   responde con needs_backend y un mensaje claro — nunca inventamos texto.
+   =========================================================================*/
+const AIService = {
+  async generateStrategy(prompt){
+    try{
+      const { text } = await apiFetch('/api/ai/strategy', { method:'POST', body: JSON.stringify({ prompt }) });
+      return { ok:true, text };
+    }catch(e){
+      if(e.code==='OPENAI_NOT_CONFIGURED' || e.status===503) return { ok:false, reason:'needs_backend', message:'La API de OpenAI no está configurada en el servidor todavía (falta OPENAI_API_KEY). Por ahora, usa "Copiar para ChatGPT" y pega la respuesta manualmente en el editor de estrategia.' };
+      return { ok:false, reason:'error', message: e.message || 'No se pudo generar la estrategia con IA.' };
+    }
+  },
+};
+
+/* ============================= AUTH =============================
+   Autenticación real: el servidor valida ADMIN_PASSWORD y emite una
+   cookie de sesión firmada (httpOnly). El frontend nunca ve ni guarda
+   la contraseña — solo pregunta "¿estoy autenticado?" al servidor.
+   =========================================================================*/
+const Auth = {
+  async checkSession(){ try{ const { authenticated } = await apiFetch('/api/auth/me'); APP.isAdmin = !!authenticated; }catch(e){ APP.isAdmin = false; } APP.authChecked = true; return APP.isAdmin; },
+  isAdmin(){ return APP.isAdmin; },
+  async login(password){
+    try{ await apiFetch('/api/auth/login', { method:'POST', body: JSON.stringify({ password }) }); APP.isAdmin = true; return { ok:true }; }
+    catch(e){ return { ok:false, message: e.message || 'Código incorrecto.' }; }
+  },
+  async logout(){ try{ await apiFetch('/api/auth/logout', { method:'POST' }); }catch(e){} APP.isAdmin = false; },
+};
+
+/* ============================= DIAGNOSTIC ============================= */
+const Diagnostic = {
+  generate(a){
+    const neg = a.negocio||{}, pres = a.presencia||{}, pub = a.publico||{}, ren = a.rendimiento||{}, voz = a.voz||{}, cap = a.capacidad||{}, obj = a.objetivo||{}, oro = a.oro||{};
+    const nombreNegocio = val(neg.nombre, 'tu negocio');
+    const plataforma = val(pres.plataformaPrincipal==='Otra'? pres.plataformaPrincipalOtra : pres.plataformaPrincipal, 'su plataforma principal');
+    const seguidoresTxt = String(pres.seguidoresActuales||'').trim()? val(pres.seguidoresActuales)+' seguidores' : 'seguidores sin especificar';
+    const situacionActual = nombreNegocio+' vende: '+val(neg.queVendes)+'. Su plataforma principal es '+plataforma+', con '+seguidoresTxt+', y '+
+      (pres.alcanceConocido==='Conozco el dato de los últimos 30 días'? 'un alcance reciente de '+val(pres.alcance30dias)+' personas en los últimos 30 días.' : 'sin un dato claro de alcance en los últimos 30 días.');
+    const oportunidad = (ren.reelsSuperan10k==='Sí'? 'Ya ha logrado Reels con más de 10,000 reproducciones ('+val(ren.cuantosReels10k,'algunos')+' en los últimos 90 días), con mejor resultado en contenido de tipo "'+val(ren.tipoContenidoMejorReel==='Otro'? ren.tipoContenidoMejorReelOtro : ren.tipoContenidoMejorReel)+'" ('+val(ren.mejorReelReproducciones,'sin dato')+' reproducciones). ' : 'Aún no ha superado las 10,000 reproducciones en un Reel, lo cual es la primera meta clara a romper. ')+
+      'Combinado con el producto de mayor ganancia ('+val(neg.productoMayorGanancia)+'), ahí está la oportunidad más clara para escalar contenido.';
+    const problema = 'La objeción de venta más frecuente es: "'+val(neg.objecionPrincipal==='Otra'? neg.objecionOtra : neg.objecionPrincipal)+'". '+
+      (pub.publicoActualEsDeseado==='No'? 'Además, el público que hoy interactúa no es exactamente el que se quiere atraer: '+val(pub.aQuienQuiereAtraer)+'.' : 'El público que interactúa hoy coincide, en general, con el que se quiere atraer.');
+    const clienteObjetivo = val(neg.clienteIdeal,'Cliente ideal aún sin describir en detalle')+'. Género que más interactúa: '+val(pub.generoAudiencia)+'. Rangos de edad principales: '+((pub.rangosEdad||[]).join(', ')||'sin definir')+'. Ubicación del público: '+val(pub.ciudadPublico)+'. Problema que resuelve el negocio: '+val(neg.problemaResuelve)+'.';
+    const posicionamiento = 'Con una forma de hablar '+((voz.formaHablar||[]).join(', ')||'aún sin definir')+' y la razón de compra declarada ("'+val(neg.porQueComprarte)+'"), '+nombreNegocio+' debería comunicar exactamente eso en cada pieza de contenido, sin diluir su voz.';
+    const pilares = [
+      'Educativo — resolver lo que más preguntan por WhatsApp/DM: '+val(neg.preguntaFrecuenteWhatsapp),
+      'Prueba y confianza — apoyado en el formato que ya funciona: '+val(ren.tipoContenidoMejorReel==='Otro'? ren.tipoContenidoMejorReelOtro : ren.tipoContenidoMejorReel),
+      'Historia y bastidores — a partir de: '+val(oro.orgullo),
+      'Producto y oferta — destacando: '+val(neg.productoEstrella),
+    ];
+    const tipoContenido = 'Dado que le gusta crear contenido de tipo '+((voz.tipoContenidoQueGusta||[]).join(', ')||'sin definir')+', y dispone de '+val(cap.tiempoDiario,'tiempo limitado')+' durante '+val(cap.diasPorSemana,'algunos')+' día(s) a la semana, conviene priorizar formatos realistas para su capacidad real antes que un calendario ambicioso e insostenible.';
+    const oportunidadesCrecimiento = 'De cara a '+((obj.temporadaInteres||[]).join(', ')||'la temporada elegida')+', con intención de '+
+      (obj.promocionesEspeciales==='Sí'? 'lanzar promociones especiales ('+val(obj.queTienesPensado)+')' : 'promociones todavía por definir')+', hay una ventana clara para capitalizar el objetivo declarado antes de que termine la temporada.';
+    const prioridades90 = 'Para octubre-enero, la prioridad es avanzar hacia: "'+val(obj.objetivoPrincipal==='Otro'? obj.objetivoOtro : obj.objetivoPrincipal)+'", logrando que quien vea el contenido por primera vez piense: "'+val(oro.percepcionPrimeraImpresion)+'".';
+    return { situacionActual, oportunidad, problema, clienteObjetivo, posicionamiento, pilares, tipoContenido, oportunidadesCrecimiento, prioridades90, generatedAt: new Date().toISOString() };
+  },
+  asText(a){
+    const d = a.diagnostico; if(!d) return 'Diagnóstico no disponible.';
+    return 'DIAGNÓSTICO DE MARKETING — '+val(a.negocio && a.negocio.nombre)+'\n\n'+
+      '1. SITUACIÓN ACTUAL\n'+d.situacionActual+'\n\n'+
+      '2. PRINCIPAL OPORTUNIDAD\n'+d.oportunidad+'\n\n'+
+      '3. PRINCIPAL PROBLEMA\n'+d.problema+'\n\n'+
+      '4. CLIENTE OBJETIVO\n'+d.clienteObjetivo+'\n\n'+
+      '5. POSICIONAMIENTO RECOMENDADO\n'+d.posicionamiento+'\n\n'+
+      '6. PILARES DE CONTENIDO SUGERIDOS\n'+d.pilares.map(p=>'- '+p).join('\n')+'\n\n'+
+      '7. TIPO DE CONTENIDO RECOMENDADO\n'+d.tipoContenido+'\n\n'+
+      '8. OPORTUNIDADES DE CRECIMIENTO\n'+d.oportunidadesCrecimiento+'\n\n'+
+      '9. PRIORIDADES PARA LOS PRÓXIMOS 90 DÍAS\n'+d.prioridades90;
+  }
+};
+
+/* ============================= SHARING (prompt + entrega) ============================= */
+const SharingService = {
+  buildChatGPTPrompt(a){
+    const p = a.personal||{}, neg = a.negocio||{}, pres = a.presencia||{}, pub = a.publico||{}, ren = a.rendimiento||{}, voz = a.voz||{}, cap = a.capacidad||{}, obj = a.objetivo||{}, oro = a.oro||{};
+    const lines = [];
+    lines.push('Actúa como estratega senior de marketing digital, contenido y posicionamiento de marca.');
+    lines.push('Estoy trabajando con un asistente del workshop Marketing Aplatanao.');
+    lines.push('Utiliza la siguiente información para crear una estrategia de contenido personalizada.');
+    lines.push('');
+    lines.push('IMPORTANTE:');
+    lines.push('No generes una estrategia genérica.');
+    lines.push('Cada recomendación debe estar directamente relacionada con el negocio, cliente ideal, objetivos y personalidad de marca proporcionados.');
+    lines.push('');
+    lines.push('=== INFORMACIÓN PERSONAL ===');
+    lines.push('Nombre: '+val(p.nombre));
+    lines.push('Ciudad: '+val(p.ciudad));
+    lines.push('Redes: Instagram '+val(p.instagram,'-')+' · TikTok '+val(p.tiktok,'-')+' · Facebook '+val(p.facebook,'-')+' · Web '+val(p.website,'-'));
+    lines.push('');
+    lines.push('=== NEGOCIO ===');
+    lines.push('Nombre del negocio: '+val(neg.nombre));
+    lines.push('Qué vende: '+val(neg.queVendes));
+    lines.push('Producto/servicio estrella: '+val(neg.productoEstrella));
+    lines.push('Producto/servicio de mayor ganancia: '+val(neg.productoMayorGanancia));
+    lines.push('Precio promedio: '+val(neg.precioPromedio));
+    lines.push('Cliente ideal: '+val(neg.clienteIdeal));
+    lines.push('Problema/necesidad que resuelve: '+val(neg.problemaResuelve));
+    lines.push('Por qué comprarle a él/ella y no a otra persona: '+val(neg.porQueComprarte));
+    lines.push('Lo que más le preguntan por WhatsApp/DM: '+val(neg.preguntaFrecuenteWhatsapp));
+    lines.push('Principal objeción de venta: '+val(neg.objecionPrincipal==='Otra'? neg.objecionOtra : neg.objecionPrincipal));
+    lines.push('');
+    lines.push('=== PRESENCIA DIGITAL ===');
+    lines.push('Plataforma principal: '+val(pres.plataformaPrincipal==='Otra'? pres.plataformaPrincipalOtra : pres.plataformaPrincipal));
+    lines.push('Otras plataformas: '+((pres.otrasPlataformas||[]).join(', ')||'No especificado'));
+    lines.push('Seguidores actuales: '+val(pres.seguidoresActuales));
+    lines.push('Cuentas que sigue: '+val(pres.cuentasQueSigue));
+    lines.push('Alcance de los últimos 30 días: '+(pres.alcanceConocido==='Conozco el dato de los últimos 30 días'? val(pres.alcance30dias)+' personas' : 'No sabe / no sabe dónde verlo'));
+    lines.push('');
+    lines.push('=== PÚBLICO ===');
+    lines.push('Género que más interactúa: '+val(pub.generoAudiencia));
+    lines.push('Rangos de edad principales: '+((pub.rangosEdad||[]).join(', ')||'No especificado'));
+    lines.push('Ciudad/provincia/país del público: '+val(pub.ciudadPublico));
+    lines.push('¿El público actual es el que quiere atraer?: '+val(pub.publicoActualEsDeseado)+(pub.publicoActualEsDeseado==='No'? ' — Quiere atraer a: '+val(pub.aQuienQuiereAtraer) : ''));
+    lines.push('');
+    lines.push('=== RENDIMIENTO EN CONTENIDO ===');
+    lines.push('¿Reels con más de 10,000 reproducciones?: '+val(ren.reelsSuperan10k)+(ren.reelsSuperan10k==='Sí'? ' ('+val(ren.cuantosReels10k)+' en los últimos 90 días)' : ''));
+    lines.push('Mejor Reel (reproducciones): '+val(ren.mejorReelReproducciones));
+    lines.push('Tipo de contenido de ese Reel: '+val(ren.tipoContenidoMejorReel==='Otro'? ren.tipoContenidoMejorReelOtro : ren.tipoContenidoMejorReel));
+    lines.push('Promedio de reproducciones por Reel: '+(ren.promedioConocido==='Conozco el promedio'? val(ren.promedioReproducciones) : 'No lo sabe'));
+    lines.push('');
+    lines.push('=== VOZ ===');
+    lines.push('Forma de hablar: '+((voz.formaHablar||[]).join(', ')||'No especificado'));
+    lines.push('Frases que dice muchísimo: '+val(voz.frasesQueDices));
+    lines.push('Cómo respondería a una clienta que pregunta por su producto/servicio: '+val(voz.comoResponderiasCliente));
+    lines.push('"Si mi mejor amiga quisiera comprarme esto, yo le diría...": '+val(voz.completaFrase));
+    lines.push('Tipo de contenido que le gusta crear: '+((voz.tipoContenidoQueGusta||[]).join(', ')||'No especificado'));
+    lines.push('');
+    lines.push('=== CAPACIDAD REAL PARA CREAR ===');
+    lines.push('Días a la semana disponibles: '+val(cap.diasPorSemana));
+    lines.push('Tiempo diario disponible: '+val(cap.tiempoDiario));
+    lines.push('Recursos disponibles: '+((cap.recursosDisponibles||[]).join(', ')||'No especificado'));
+    lines.push('');
+    lines.push('=== OBJETIVO DE OCTUBRE-ENERO ===');
+    lines.push('Objetivo principal: '+val(obj.objetivoPrincipal==='Otro'? obj.objetivoOtro : obj.objetivoPrincipal));
+    lines.push('Temporadas de interés: '+((obj.temporadaInteres||[]).join(', ')||'No especificado'));
+    lines.push('¿Promociones especiales en estas fechas?: '+val(obj.promocionesEspeciales)+(obj.promocionesEspeciales==='Sí'? ' — '+val(obj.queTienesPensado) : ''));
+    lines.push('');
+    lines.push('=== PREGUNTAS DE ORO ===');
+    lines.push('Lo que más le enorgullece de su negocio: '+val(oro.orgullo));
+    lines.push('Error de inicio que no volvería a cometer: '+val(oro.errorInicio));
+    lines.push('Mito de su industria que le gustaría desmontar: '+val(oro.mitoIndustria));
+    lines.push('Pregunta que le gustaría que sus clientes dejaran de hacerle: '+val(oro.preguntaQueNoQuiereMas));
+    lines.push('Qué quiere que piensen al ver su contenido por primera vez: '+val(oro.percepcionPrimeraImpresion));
+    lines.push('');
+    lines.push('Con toda esta información, genera:');
+    lines.push('- Diagnóstico');
+    lines.push('- Posicionamiento');
+    lines.push('- Público objetivo');
+    lines.push('- Propuesta de valor');
+    lines.push('- Pilares de contenido');
+    lines.push('- 30 ideas de contenido');
+    lines.push('- 15 hooks');
+    lines.push('- 10 ideas de Reels');
+    lines.push('- 10 ideas de Stories');
+    lines.push('- 5 ideas de carruseles');
+    lines.push('- Calendario de contenido de 30 días');
+    lines.push('- CTAs');
+    lines.push('- Estrategia de crecimiento');
+    lines.push('- Estrategia de conversión');
+    lines.push('- Recomendaciones de publicidad');
+    lines.push('- Uso de IA');
+    lines.push('- Plan de acción para la temporada de octubre a enero');
+    lines.push('');
+    lines.push('Entrega la estrategia en formato profesional, accionable y específico para este negocio.');
+    lines.push('El documento debe estar personalizado con:');
+    lines.push('Nombre del asistente: '+val(p.nombre));
+    lines.push('Negocio: '+val(neg.nombre));
+    lines.push('No utilices placeholders.');
+    return lines.join('\n');
+  },
+  publicLink(id){
+    try{ const base = location.href.split('#')[0]; return base+'#/estrategia/'+id; }catch(e){ return '#/estrategia/'+id; }
+  },
+  whatsappMessage(a){
+    return 'Hola '+firstName(a.personal && a.personal.nombre)+' 👋\n\n'+
+      'Fue un placer tenerte en Marketing Aplatanao.\n'+
+      'Ya tenemos lista tu estrategia de contenido personalizada para '+val(a.negocio && a.negocio.nombre)+'.\n\n'+
+      'Aquí tienes tu estrategia:\n'+SharingService.publicLink(a.id)+'\n\n'+
+      'Esperamos que esta estrategia te ayude a convertir tus ideas en contenido y resultados.\n\n'+
+      '¡A romper! 🔥\n'+
+      'Marketing Aplatanao';
+  }
+};
+
+/* ============================= STRATEGY ============================= */
+const SECTION_DEFS = [
+  {key:'diagnostico',      num:'01', title:'Diagnóstico',            re:/diagn[oó]stico/i},
+  {key:'posicionamiento',  num:'02', title:'Posicionamiento',        re:/posicionamiento/i},
+  {key:'clienteIdeal',     num:'03', title:'Cliente ideal',          re:/cliente\s+ideal|p[uú]blico\s+objetivo/i},
+  {key:'pilares',          num:'04', title:'Pilares de contenido',   re:/pilares/i},
+  {key:'ideas',            num:'05', title:'Ideas de contenido',     re:/ideas\s+de\s+contenido/i},
+  {key:'hooks',            num:'06', title:'Hooks',                  re:/\bhooks?\b/i},
+  {key:'reels',            num:'07', title:'Reels',                  re:/\breels?\b/i},
+  {key:'stories',          num:'08', title:'Stories',                re:/\bstories?\b/i},
+  {key:'carruseles',       num:'09', title:'Carruseles',             re:/carrusel/i},
+  {key:'calendario',       num:'10', title:'Calendario 30 días',     re:/calendario/i},
+  {key:'ctas',             num:'11', title:'CTAs',                   re:/\bctas?\b|llamados?\s+a\s+la\s+acci[oó]n/i},
+  {key:'publicidad',       num:'12', title:'Publicidad',             re:/publicidad/i},
+  {key:'ia',               num:'13', title:'Uso de IA',              re:/intelig(?:encia)?\s+artificial|\buso\s+de\s+ia\b/i},
+  {key:'plan90',           num:'14', title:'Plan de 90 días',        re:/plan\s+de\s+90|90\s+d[ií]as/i},
+];
+const StrategyModule = {
+  emptySections(){ const s={}; SECTION_DEFS.forEach(d=>s[d.key]=''); return s; },
+  splitPasted(text){
+    const lines = String(text||'').split('\n');
+    const marks = [];
+    lines.forEach((line, idx)=>{
+      if(line.length > 120) return;
+      for(const def of SECTION_DEFS){ if(def.re.test(line)){ marks.push({idx, key:def.key}); break; } }
+    });
+    const seen = new Set(); const ordered = [];
+    marks.sort((a,b)=>a.idx-b.idx).forEach(m=>{ if(!seen.has(m.key)){ seen.add(m.key); ordered.push(m); } });
+    const result = StrategyModule.emptySections();
+    if(ordered.length===0){ result.diagnostico = text.trim(); return result; }
+    for(let i=0;i<ordered.length;i++){
+      const start = ordered[i].idx+1;
+      const end = i+1<ordered.length? ordered[i+1].idx : lines.length;
+      result[ordered[i].key] = lines.slice(start,end).join('\n').trim();
+    }
+    return result;
+  }
+};
+
+/* ============================= PDF ============================= */
+const PDFModule = {
+  buildDocument(a){
+    const chapters = [];
+    chapters.push({kicker:'Capítulo 1', title:'Diagnóstico', sections:[
+      {h:'Situación actual', t:a.diagnostico? a.diagnostico.situacionActual : ''},
+      {h:'Principal oportunidad', t:a.diagnostico? a.diagnostico.oportunidad : ''},
+      {h:'Principal problema', t:a.diagnostico? a.diagnostico.problema : ''},
+      {h:'Cliente objetivo', t:a.diagnostico? a.diagnostico.clienteObjetivo : ''},
+    ]});
+    const es = (a.estrategia && a.estrategia.sections) || {};
+    chapters.push({kicker:'Capítulo 2', title:'Estrategia y posicionamiento', sections:[
+      {h:'01 — Diagnóstico (ChatGPT)', t:es.diagnostico},
+      {h:'02 — Posicionamiento', t:es.posicionamiento},
+      {h:'03 — Cliente ideal', t:es.clienteIdeal},
+      {h:'04 — Pilares de contenido', t:es.pilares},
+    ]});
+    chapters.push({kicker:'Capítulo 3', title:'Plan de contenido', sections:[
+      {h:'05 — Ideas de contenido', t:es.ideas},
+      {h:'06 — Hooks', t:es.hooks},
+      {h:'07 — Reels', t:es.reels},
+      {h:'08 — Stories', t:es.stories},
+      {h:'09 — Carruseles', t:es.carruseles},
+      {h:'11 — CTAs', t:es.ctas},
+    ]});
+    chapters.push({kicker:'Capítulo 4', title:'Calendario', sections:[
+      {h:'10 — Calendario de 30 días', t:es.calendario},
+    ]});
+    chapters.push({kicker:'Capítulo 5', title:'Publicidad, IA y plan de 90 días', sections:[
+      {h:'12 — Publicidad', t:es.publicidad},
+      {h:'13 — Uso de IA', t:es.ia},
+      {h:'14 — Plan de 90 días', t:es.plan90},
+    ]});
+    return chapters;
+  }
+};
+
+/* ============================= FORMS ============================= */
+const OBJECIONES = ['Está caro','Déjame pensarlo','Después te compro','No tengo dinero ahora','Quiero comparar','No sé si me va a funcionar','Otra'];
+const PLATAFORMAS_PRINCIPAL = ['Instagram','TikTok','Facebook','WhatsApp','Otra'];
+const PLATAFORMAS_MULTI = ['Instagram','TikTok','Facebook','WhatsApp','YouTube','Otra'];
+const ALCANCE_OPC = ['Conozco el dato de los últimos 30 días','No sé dónde verlo'];
+const GENERO_AUD = ['Mujeres','Hombres','Ambos'];
+const RANGOS_EDAD = ['Menores de 13','13-17','18-24','25-34','35-44','45-54','55+'];
+const PUBLICO_DESEADO = ['Sí','No','No estoy segura'];
+const SI_NO = ['Sí','No'];
+const CUANTOS_REELS = ['1-2','3-5','6-10','11-20','Más de 20'];
+const TIPO_CONTENIDO_REEL = ['Hablando frente a cámara','Yapping','Tutorial','Entretenimiento','Tendencia','Producto/servicio','Storytelling','Antes/después','Testimonio','Otro'];
+const PROMEDIO_OPC = ['Conozco el promedio','No sé'];
+const FORMAS_HABLAR = ['Jocosa','Educativa','Elegante','Directa','Inspiradora','Relajada','Sarcástica','Profesional','Conversacional','Otra'];
+const TIPO_CONTENIDO_GUSTA = ['Hablar frente a cámara','Mostrar productos','Voiceover','Tutoriales','Mostrar procesos','Mostrar mi día','Storytelling','Entrevistas','No me gusta grabarme 😂'];
+const DIAS_SEMANA = ['1','2-3','4-5','6-7'];
+const TIEMPO_DIARIO = ['15-30 minutos','30-60 minutos','1-2 horas','Más de 2 horas'];
+const RECURSOS = ['Celular','Trípode','Micrófono','Buena iluminación','Local físico','Personal/equipo','Productos para mostrar','Solo yo y mi celular 😂'];
+const OBJETIVOS_TEMPORADA = ['Vender más','Conseguir clientes nuevos','Aumentar seguidores','Dar a conocer mi marca','Llevar personas a mi tienda física','Aumentar ventas por WhatsApp','Lanzar un producto/servicio','Liquidar inventario','Posicionarme como experta','Otro'];
+const TEMPORADAS = ['Halloween','Black Friday','Cyber Monday','Navidad','Año Nuevo','Reyes Magos','Todas'];
+const PROMO_OPC = ['Sí','No','Todavía no sé'];
+
+const FormState = { draft:null, step:0 };
+
+const Forms = {
+  STEP_TITLES: ['Información personal','🏪 Conozcamos tu negocio','📱 Tu presencia digital','👀 Conozcamos a tu público','🚀 Tu rendimiento en contenido','🗣️ Tu voz','🎥 Tu capacidad real para crear','💰 Objetivo de octubre-enero','🔥 Preguntas de oro'],
+  STEP_SUBS: [
+    'Para poder identificarte y contactarte con tu estrategia.',
+    'Conóceme a mí y a mi negocio.',
+    'Dónde estás publicando hoy.',
+    'Quién te sigue realmente.',
+    'Qué tan lejos ha llegado tu contenido.',
+    'Cómo hablas y qué te hace sonar como tú.',
+    'Para no diseñar un calendario de fantasía.',
+    'Qué quieres lograr en esta temporada.',
+    'Las que hacen que tu estrategia se sienta humana, no una plantilla de IA.',
+  ],
+  LAST_STEP: 8,
+  submitting: false,
+  emptyDraft(){
+    return {
+      personal:{nombre:'',whatsapp:'',email:'',ciudad:'',instagram:'',tiktok:'',facebook:'',website:''},
+      negocio:{nombre:'',queVendes:'',productoEstrella:'',productoMayorGanancia:'',precioPromedio:'',clienteIdeal:'',problemaResuelve:'',porQueComprarte:'',preguntaFrecuenteWhatsapp:'',objecionPrincipal:'',objecionOtra:''},
+      presencia:{plataformaPrincipal:'',plataformaPrincipalOtra:'',otrasPlataformas:[],otrasPlataformasOtra:'',seguidoresActuales:'',cuentasQueSigue:'',alcanceConocido:'',alcance30dias:''},
+      publico:{generoAudiencia:'',rangosEdad:[],ciudadPublico:'',publicoActualEsDeseado:'',aQuienQuiereAtraer:''},
+      rendimiento:{reelsSuperan10k:'',cuantosReels10k:'',mejorReelReproducciones:'',tipoContenidoMejorReel:'',tipoContenidoMejorReelOtro:'',promedioConocido:'',promedioReproducciones:''},
+      voz:{formaHablar:[],formaHablarOtra:'',frasesQueDices:'',comoResponderiasCliente:'',completaFrase:'',tipoContenidoQueGusta:[]},
+      capacidad:{diasPorSemana:'',tiempoDiario:'',recursosDisponibles:[]},
+      objetivo:{objetivoPrincipal:'',objetivoOtro:'',temporadaInteres:[],promocionesEspeciales:'',queTienesPensado:''},
+      oro:{orgullo:'',errorInicio:'',mitoIndustria:'',preguntaQueNoQuiereMas:'',percepcionPrimeraImpresion:''},
+    };
+  },
+  start(){ FormState.draft = Forms.emptyDraft(); FormState.step = 0; navigate('/form'); },
+  setField(path, value){ setPath(FormState.draft, path, value); },
+  toggleChip(path, value, max){
+    const arr = (getPath(FormState.draft, path) || []).slice();
+    const idx = arr.indexOf(value);
+    if(idx>=0){ arr.splice(idx,1); }
+    else { if(max && arr.length>=max){ toast('Puedes seleccionar máximo '+max+' opciones.', 'warn'); return; } arr.push(value); }
+    setPath(FormState.draft, path, arr); render();
+  },
+  selectSingle(path, value){ setPath(FormState.draft, path, value); render(); },
+  REQUIRED_LABELS: {
+    0: [['personal.nombre','Nombre completo'],['personal.whatsapp','WhatsApp']],
+    1: [['negocio.nombre','Nombre de tu negocio'],['negocio.queVendes','¿Qué vendes?']],
+  },
+  validateStep(i){
+    const reqs = Forms.REQUIRED_LABELS[i] || [];
+    return reqs.filter(([p])=> !String(getPath(FormState.draft,p)||'').trim()).map(([,label])=>label);
+  },
+  next(){
+    const missing = Forms.validateStep(FormState.step);
+    if(missing.length){ toast('Completa antes de continuar: '+missing.join(', '), 'warn'); return; }
+    if(FormState.step < Forms.LAST_STEP){ FormState.step++; render(); window.scrollTo(0,0); }
+    else { Forms.submit(); }
+  },
+  back(){ if(FormState.step>0){ FormState.step--; render(); window.scrollTo(0,0); } },
+  async submit(){
+    const d = FormState.draft;
+    const payload = {
+      fechaRegistro:new Date().toISOString(), estado:'diagnostico', entregado:false,
+      personal:d.personal, negocio:d.negocio, presencia:d.presencia, publico:d.publico, rendimiento:d.rendimiento,
+      voz:d.voz, capacidad:d.capacidad, objetivo:d.objetivo, oro:d.oro,
+      estrategia:{savedAt:null, sections:StrategyModule.emptySections()}, pdf:{status:'no_generado', generatedAt:null},
+    };
+    payload.diagnostico = Diagnostic.generate(payload);
+    Forms.submitting = true; render();
+    try{
+      const created = await NotionService.createAssistant(payload);
+      FormState.draft = null; FormState.step = 0; Forms.submitting = false;
+      navigate('/confirmacion/'+created.id);
+    }catch(e){
+      Forms.submitting = false;
+      toast('No se pudo enviar tu diagnóstico: '+e.message, 'danger');
+      render();
+    }
+  }
+};
+
+/* ----------------------------- field renderers ----------------------------- */
+function fieldText(label, path, opts){
+  opts = opts || {};
+  const value = getPath(FormState.draft, path) || '';
+  const id = 'f_'+path.replace(/\./g,'_');
+  return '<label class="field" for="'+id+'"><span class="field-label">'+esc(label)+(opts.required?' <span class="req">*</span>':'')+'</span>'+
+    '<input class="input" type="'+(opts.type||'text')+'" id="'+id+'" value="'+esc(value)+'" placeholder="'+esc(opts.placeholder||'')+'" oninput="Forms.setField(\''+path+'\', this.value)"></label>';
+}
+function fieldTextarea(label, path, opts){
+  opts = opts || {};
+  const value = getPath(FormState.draft, path) || '';
+  const id = 'f_'+path.replace(/\./g,'_');
+  return '<label class="field" for="'+id+'"><span class="field-label">'+esc(label)+(opts.required?' <span class="req">*</span>':'')+'</span>'+
+    '<textarea class="textarea" id="'+id+'" placeholder="'+esc(opts.placeholder||'')+'" oninput="Forms.setField(\''+path+'\', this.value)">'+esc(value)+'</textarea>'+
+    (opts.hint? '<span class="hint">'+esc(opts.hint)+'</span>' : '')+'</label>';
+}
+function fieldChipsSingle(label, path, options){
+  const value = getPath(FormState.draft, path) || '';
+  return '<div class="field"><span class="field-label">'+esc(label)+'</span><div class="chip-group">'+
+    options.map(o=>'<button type="button" class="chip'+(value===o?' is-selected accent-chip':'')+'" onclick="Forms.selectSingle(\''+path+'\',\''+esc(o)+'\')">'+esc(o)+'</button>').join('')+
+    '</div></div>';
+}
+function fieldChipsMulti(label, path, options, opts){
+  opts = opts || {};
+  const value = getPath(FormState.draft, path) || [];
+  return '<div class="field"><span class="field-label">'+esc(label)+'</span><div class="chip-group">'+
+    options.map(o=>'<button type="button" class="chip'+(value.includes(o)?' is-selected':'')+'" onclick="Forms.toggleChip(\''+path+'\',\''+esc(o)+'\','+(opts.max||0)+')">'+esc(o)+'</button>').join('')+
+    '</div>'+(opts.hint? '<span class="hint">'+esc(opts.hint)+'</span>' : '')+'</div>';
+}
+
+function renderFormStepFields(step){
+  const d = FormState.draft;
+  if(step===0){
+    return fieldText('Nombre completo','personal.nombre',{required:true, placeholder:'Ej. Ana Pérez'})+
+      fieldText('WhatsApp','personal.whatsapp',{required:true, placeholder:'+1 809 000 0000'})+
+      fieldText('Email','personal.email',{type:'email', placeholder:'tucorreo@email.com'})+
+      fieldText('Ciudad','personal.ciudad',{placeholder:'Ciudad, país'})+
+      '<div class="grid-2">'+fieldText('Instagram','personal.instagram',{placeholder:'@usuario'})+fieldText('TikTok','personal.tiktok',{placeholder:'@usuario'})+'</div>'+
+      '<div class="grid-2">'+fieldText('Facebook','personal.facebook',{placeholder:'Nombre de página'})+fieldText('Página web','personal.website',{placeholder:'tunegocio.com'})+'</div>';
+  }
+  if(step===1){
+    return fieldText('Nombre de tu negocio','negocio.nombre',{required:true, placeholder:'Ej. Dulce Trópico'})+
+      fieldTextarea('¿Qué vendes?','negocio.queVendes',{required:true})+
+      fieldText('¿Cuál es tu producto/servicio estrella?','negocio.productoEstrella')+
+      fieldText('¿Qué producto/servicio te deja mayor ganancia?','negocio.productoMayorGanancia')+
+      fieldText('¿Cuál es el precio promedio de lo que vendes?','negocio.precioPromedio')+
+      fieldTextarea('¿Quién es tu cliente ideal?','negocio.clienteIdeal')+
+      fieldTextarea('¿Qué problema o necesidad le resuelves?','negocio.problemaResuelve')+
+      fieldTextarea('¿Por qué debería comprarte a ti y no a otra persona?','negocio.porQueComprarte')+
+      fieldTextarea('¿Qué es lo que más te preguntan por WhatsApp o DM?','negocio.preguntaFrecuenteWhatsapp')+
+      fieldChipsSingle('¿Cuál es la principal objeción que recibes?','negocio.objecionPrincipal', OBJECIONES)+
+      (d.negocio.objecionPrincipal==='Otra'? fieldText('Especifica la objeción','negocio.objecionOtra') : '');
+  }
+  if(step===2){
+    return fieldChipsSingle('¿En cuál plataforma publicas más contenido actualmente?','presencia.plataformaPrincipal', PLATAFORMAS_PRINCIPAL)+
+      (d.presencia.plataformaPrincipal==='Otra'? fieldText('Especifica la plataforma','presencia.plataformaPrincipalOtra') : '')+
+      fieldChipsMulti('¿Cuáles otras plataformas utilizas?','presencia.otrasPlataformas', PLATAFORMAS_MULTI)+
+      (d.presencia.otrasPlataformas.includes('Otra')? fieldText('Especifica la otra plataforma','presencia.otrasPlataformasOtra') : '')+
+      fieldText('¿Cuántos seguidores tienes actualmente en tu plataforma principal?','presencia.seguidoresActuales',{placeholder:'Ej. 6,200 seguidores'})+
+      fieldText('¿Cuántas cuentas sigues actualmente?','presencia.cuentasQueSigue',{placeholder:'Ej. 340 cuentas'})+
+      fieldChipsSingle('¿Cuál es tu alcance actualmente? (últimos 30 días)','presencia.alcanceConocido', ALCANCE_OPC)+
+      (d.presencia.alcanceConocido==='Conozco el dato de los últimos 30 días'? fieldText('Alcance (personas)','presencia.alcance30dias') : '');
+  }
+  if(step===3){
+    return fieldChipsSingle('¿Cuál es el público que más te sigue/interactúa contigo?','publico.generoAudiencia', GENERO_AUD)+
+      fieldChipsMulti('Selecciona tus 3 principales rangos de edad','publico.rangosEdad', RANGOS_EDAD, {max:3, hint:'Máximo 3 opciones.'})+
+      fieldText('¿De qué ciudad/provincia o país proviene principalmente tu público?','publico.ciudadPublico')+
+      fieldChipsSingle('¿Tu público actual es el mismo que quieres atraer?','publico.publicoActualEsDeseado', PUBLICO_DESEADO)+
+      (d.publico.publicoActualEsDeseado==='No'? fieldTextarea('¿A quién quieres atraer?','publico.aQuienQuiereAtraer') : '');
+  }
+  if(step===4){
+    return fieldChipsSingle('¿Tienes Reels que hayan superado las 10,000 reproducciones?','rendimiento.reelsSuperan10k', SI_NO)+
+      (d.rendimiento.reelsSuperan10k==='Sí'? fieldChipsSingle('Si respondiste sí, ¿cuántos tienes en los últimos 90 días?','rendimiento.cuantosReels10k', CUANTOS_REELS) : '')+
+      fieldText('¿Cuál ha sido tu Reel con más reproducciones en los últimos 90 días?','rendimiento.mejorReelReproducciones',{placeholder:'Número de reproducciones'})+
+      fieldChipsSingle('¿Qué tipo de contenido fue?','rendimiento.tipoContenidoMejorReel', TIPO_CONTENIDO_REEL)+
+      (d.rendimiento.tipoContenidoMejorReel==='Otro'? fieldText('Especifica el tipo de contenido','rendimiento.tipoContenidoMejorReelOtro') : '')+
+      fieldChipsSingle('¿Cuál es aproximadamente tu promedio de reproducciones por Reel?','rendimiento.promedioConocido', PROMEDIO_OPC)+
+      (d.rendimiento.promedioConocido==='Conozco el promedio'? fieldText('Promedio de reproducciones','rendimiento.promedioReproducciones') : '');
+  }
+  if(step===5){
+    return fieldChipsMulti('¿Cómo describes tu forma de hablar?','voz.formaHablar', FORMAS_HABLAR)+
+      (d.voz.formaHablar.includes('Otra')? fieldText('Especifica tu forma de hablar','voz.formaHablarOtra') : '')+
+      fieldTextarea('Escribe 3 frases que dices muchísimo.','voz.frasesQueDices')+
+      fieldTextarea('Escribe cómo le responderías a una clienta que te pregunta por tu producto/servicio.','voz.comoResponderiasCliente')+
+      fieldTextarea('Completa: "Si mi mejor amiga quisiera comprarme esto, yo le diría…"','voz.completaFrase')+
+      fieldChipsMulti('¿Qué tipo de contenido te gusta crear?','voz.tipoContenidoQueGusta', TIPO_CONTENIDO_GUSTA);
+  }
+  if(step===6){
+    return fieldChipsSingle('¿Cuántos días a la semana puedes crear contenido?','capacidad.diasPorSemana', DIAS_SEMANA)+
+      fieldChipsSingle('¿Cuánto tiempo puedes dedicar diariamente?','capacidad.tiempoDiario', TIEMPO_DIARIO)+
+      fieldChipsMulti('¿Qué tienes disponible para crear contenido?','capacidad.recursosDisponibles', RECURSOS);
+  }
+  if(step===7){
+    return fieldChipsSingle('¿Qué quieres conseguir principalmente durante octubre-enero?','objetivo.objetivoPrincipal', OBJETIVOS_TEMPORADA)+
+      (d.objetivo.objetivoPrincipal==='Otro'? fieldText('Especifica tu objetivo','objetivo.objetivoOtro') : '')+
+      fieldChipsMulti('¿Qué temporada te interesa aprovechar más?','objetivo.temporadaInteres', TEMPORADAS)+
+      fieldChipsSingle('¿Tienes pensado hacer promociones especiales durante estas fechas?','objetivo.promocionesEspeciales', PROMO_OPC)+
+      (d.objetivo.promocionesEspeciales==='Sí'? fieldTextarea('¿Qué tienes pensado?','objetivo.queTienesPensado') : '');
+  }
+  if(step===8){
+    return fieldTextarea('¿Qué parte de tu negocio te da más orgullo?','oro.orgullo')+
+      fieldTextarea('¿Qué error cometiste al comenzar que hoy no volverías a cometer?','oro.errorInicio')+
+      fieldTextarea('¿Qué mito o mentira sobre tu industria te gustaría desmontar?','oro.mitoIndustria')+
+      fieldTextarea('¿Qué pregunta te gustaría que tus clientes dejaran de hacerte? 😂','oro.preguntaQueNoQuiereMas')+
+      fieldTextarea('¿Qué quieres que una persona piense cuando vea tu contenido por primera vez?','oro.percepcionPrimeraImpresion');
+  }
+  return '';
+}
+
+function renderForm(){
+  if(!FormState.draft){ FormState.draft = Forms.emptyDraft(); FormState.step = 0; }
+  const step = FormState.step;
+  const total = Forms.LAST_STEP+1;
+  const pct = Math.round(((step+1)/total)*100);
+  return '<div class="container page-narrow">'+
+    '<div class="stepper"><div class="stepper-top"><span class="stepper-title">'+esc(Forms.STEP_TITLES[step])+'</span><span class="stepper-count">Paso '+(step+1)+' de '+total+'</span></div>'+
+    '<div class="stepper-track"><div class="stepper-fill" style="width:'+pct+'%"></div></div></div>'+
+    '<h2 class="form-step-title">'+esc(Forms.STEP_TITLES[step])+'</h2><p class="form-step-sub">'+esc(Forms.STEP_SUBS[step])+'</p>'+
+    '<div class="form-fields">'+renderFormStepFields(step)+'</div>'+
+    '<div class="form-nav">'+
+      (step>0? '<button class="btn btn-secondary" onclick="Forms.back()" '+(Forms.submitting?'disabled':'')+'>Atrás</button>' : '<button class="btn btn-ghost" onclick="navigate(\'/\')">Cancelar</button>')+
+      '<button class="btn btn-primary" onclick="Forms.next()" '+(Forms.submitting?'disabled':'')+'>'+(Forms.submitting? 'Enviando…' : (step<Forms.LAST_STEP? 'Siguiente' : 'Crear mi diagnóstico'))+'</button>'+
+    '</div></div>';
+}
+
+/* ============================= RENDER: LANDING / CONFIRM / PUBLIC ============================= */
+function renderLanding(){
+  return '<div class="container"><div class="hero">'+
+    '<span class="hero-eyebrow">🍌 Workshop Marketing Aplatanao</span>'+
+    '<h1>Vamos a conocer<br>tu negocio.</h1>'+
+    '<p class="hero-lead">Completa este diagnóstico y utilizaremos tus respuestas para construir una estrategia de contenido diseñada específicamente para tu negocio.</p>'+
+    '<div class="hero-meta"><div class="meta-item"><span class="meta-value">10–15 min</span><span class="meta-label">Tiempo estimado</span></div>'+
+    '<div class="meta-item"><span class="meta-value">9 pasos</span><span class="meta-label">40 preguntas guiadas</span></div>'+
+    '<div class="meta-item"><span class="meta-value">1 estrategia</span><span class="meta-label">Hecha para ti</span></div></div>'+
+    '<div class="hero-actions"><button class="btn btn-primary" onclick="Forms.start()">Comenzar diagnóstico</button>'+
+    '<span class="small muted">Sin costo · Solo para asistentes del workshop</span></div>'+
+    '<div class="landing-steps">'+
+      stepCard('01','Tu negocio y tu público','Qué vendes, a quién y qué tan bien te conoce.')+
+      stepCard('02','Tu rendimiento real','Cómo le ha ido a tu contenido, con datos reales.')+
+      stepCard('03','Tu voz y tu capacidad','Cómo hablas y cuánto tiempo tienes de verdad.')+
+      stepCard('04','Objetivo de octubre-enero','Y 5 preguntas de oro para hacerlo humano.')+
+    '</div>'+
+    '<div class="landing-footer"><span class="small muted">Marketing Aplatanao — Content Strategy Hub · MVP interno</span>'+
+    '<a class="link-btn" href="#/admin">¿Eres del equipo? Entrar al panel admin →</a></div>'+
+    '</div></div>';
+}
+function stepCard(num,title,desc){ return '<div class="step-card"><span class="step-num">'+num+'</span><h4>'+esc(title)+'</h4><p>'+esc(desc)+'</p></div>'; }
+
+/* ============================= DATA LOADING (async) ============================= */
+function ensureAssistantLoaded(id){
+  const a = NotionService.getAssistant(id);
+  if(a) return a;
+  if(!APP.fetching[id] && !APP.fetchError[id]){
+    APP.fetching[id] = true;
+    NotionService.fetchAssistant(id)
+      .catch(e=>{ APP.fetchError[id] = e.message || 'No se pudo cargar este asistente.'; })
+      .finally(()=>{ APP.fetching[id] = false; render(); });
+  }
+  return null;
+}
+function retryAssistantLoad(id){ delete APP.fetchError[id]; render(); }
+function ensureListLoaded(){
+  if(APP.listLoaded || APP.listLoading || APP.listError) return;
+  NotionService.refreshList()
+    .catch(e=>{ APP.listError = e.message; toast('No se pudo cargar la lista de asistentes: '+e.message, 'danger'); })
+    .finally(render);
+}
+function retryListLoad(){ APP.listError = null; render(); }
+let authChecking = false;
+function ensureAuthChecked(){
+  if(APP.authChecked || authChecking) return;
+  authChecking = true;
+  Auth.checkSession().finally(()=>{ authChecking = false; render(); });
+}
+function renderLoadingState(msg){
+  return '<div class="container page"><div class="empty-state"><h3>Cargando…</h3><p>'+esc(msg||'Un momento por favor.')+'</p></div></div>';
+}
+
+function renderConfirmation(id){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  return '<div class="container page-narrow">'+
+    '<div class="confirm-badge">✓</div>'+
+    '<h2 class="section-title" style="margin-top:18px;">¡Diagnóstico completado!</h2>'+
+    '<p class="muted" style="margin-top:8px;">Gracias, '+esc(firstName(a.personal.nombre))+'. Hemos recibido la información de <strong style="color:var(--ink)">'+esc(a.negocio.nombre)+'</strong>.</p>'+
+    '<div style="margin-top:14px;">'+stateBadge(a.estado)+'</div>'+
+    '<div class="summary-grid">'+
+      summaryRow('Negocio', a.negocio.nombre)+summaryRow('Plataforma principal', a.presencia.plataformaPrincipal==='Otra'? a.presencia.plataformaPrincipalOtra : a.presencia.plataformaPrincipal)+
+      summaryRow('Objetivo octubre-enero', a.objetivo.objetivoPrincipal==='Otro'? a.objetivo.objetivoOtro : a.objetivo.objetivoPrincipal)+summaryRow('Seguidores actuales', a.presencia.seguidoresActuales)+
+    '</div>'+
+    '<p class="small muted" style="margin-top:22px;">Nuestro equipo revisará tu diagnóstico y preparará tu estrategia de contenido personalizada. Te la enviaremos por WhatsApp cuando esté lista.</p>'+
+    '<div class="hero-actions" style="margin-top:26px;"><a class="btn btn-secondary" href="#/estrategia/'+a.id+'">Ver mi información</a>'+
+    '<button class="btn btn-primary" onclick="navigate(\'/\')">Finalizar</button></div>'+
+    '</div>';
+}
+function summaryRow(k,v){ return '<div class="summary-row"><span class="k">'+esc(k)+'</span><span class="v">'+esc(val(v))+'</span></div>'; }
+
+function renderPublicStrategy(id){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  const ready = STATE_ORDER.indexOf(a.estado) >= STATE_ORDER.indexOf('estrategia');
+  let body;
+  if(!ready){
+    body = '<div class="card waiting-card"><div class="waiting-icon">⏳</div><h3>Tu estrategia se está preparando</h3>'+
+      '<p class="muted" style="max-width:44ch;margin:8px auto 0;">Nuestro equipo está trabajando en tu estrategia de contenido personalizada. Te avisaremos por WhatsApp en cuanto esté lista.</p>'+
+      '<div style="margin-top:18px;">'+stateBadge(a.estado)+'</div></div>';
+  } else {
+    const chapters = PDFModule.buildDocument(a);
+    body = '<div class="card card-pad">'+
+      chapters.map(ch=>'<div class="diag-block"><span class="section-eyebrow">'+esc(ch.kicker)+'</span><h3 style="margin-top:4px;margin-bottom:14px;">'+esc(ch.title)+'</h3>'+
+        ch.sections.filter(s=>s.t).map(s=>'<div style="margin-bottom:16px;"><h4>'+esc(s.h)+'</h4><p>'+nl2br(s.t)+'</p></div>').join('')+
+      '</div>').join('<hr class="rule">')+
+      '</div>'+
+      (a.pdf && a.pdf.status==='generado'? '<div style="margin-top:18px;text-align:center;"><button class="btn btn-secondary" onclick="downloadPdf(\''+a.id+'\', false, this)">Descargar PDF</button></div>' : '');
+  }
+  return '<div class="container public-shell">'+
+    '<div class="public-hero"><span class="hero-eyebrow">🍌 Marketing Aplatanao</span><h1 style="margin-top:14px;font-size:28px;">Tu estrategia personalizada</h1>'+
+    '<p style="margin-top:10px;font-size:17px;font-weight:700;">'+esc(a.personal.nombre)+'</p><p class="muted">'+esc(a.negocio.nombre)+'</p></div>'+
+    body+'</div>';
+}
+
+/* ============================= RENDER: ADMIN GATE ============================= */
+let adminCodeInput = '';
+let adminGateSubmitting = false;
+function renderAdminGate(){
+  return '<div class="container"><div class="gate-wrap">'+
+    '<span class="hero-eyebrow">🍌 Panel administrativo</span>'+
+    '<h2 style="margin-top:16px;">Acceso de equipo</h2>'+
+    '<p class="muted small" style="margin-top:8px;">Los asistentes nunca ven esta pantalla. Este es un panel interno para el equipo de Marketing Aplatanao.</p>'+
+    '<div class="card card-pad">'+
+      '<label class="field" for="adminCode"><span class="field-label">Contraseña</span>'+
+      '<input class="input" id="adminCode" type="password" placeholder="Contraseña del equipo" oninput="adminCodeInput=this.value" onkeydown="if(event.key===\'Enter\') AdminGate.submit()" '+(adminGateSubmitting?'disabled':'')+'></label>'+
+      '<button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="AdminGate.submit()" '+(adminGateSubmitting?'disabled':'')+'>'+(adminGateSubmitting?'Verificando…':'Entrar')+'</button>'+
+    '</div></div></div>';
+}
+const AdminGate = {
+  async submit(){
+    adminGateSubmitting = true; rerenderPreservingFocus();
+    const r = await Auth.login(adminCodeInput);
+    adminGateSubmitting = false;
+    if(r.ok){ adminCodeInput=''; toast('Bienvenido al panel','good'); navigate('/admin'); }
+    else { toast(r.message || 'Código incorrecto','danger'); render(); }
+  }
+};
+
+/* ============================= RENDER: TOPBAR ============================= */
+function renderTopbar(){
+  const isAdminArea = (location.hash||'').indexOf('#/admin')===0;
+  return '<div class="topbar-inner">'+
+    '<a class="brand" href="#/"><span class="brand-mark">🍌</span><span class="brand-text"><span class="brand-name">Marketing Aplatanao</span><span class="brand-sub">Content Strategy Hub</span></span></a>'+
+    '<div class="top-actions">'+
+      (isAdminArea? '<span class="mode-pill is-admin">Panel admin</span>' : '<span class="mode-pill">Vista asistente</span>')+
+      (isAdminArea && Auth.isAdmin()? '<button class="btn btn-ghost btn-sm" onclick="Admin.logout()">Salir</button>' : '')+
+    '</div></div>';
+}
+
+/* ============================= ADMIN: DASHBOARD ============================= */
+const AdminState = { search:'', filter:'all', selected:new Set() };
+const FILTERS = [
+  {key:'all', label:'Todos'}, {key:'nuevo', label:'Nuevos'}, {key:'diagnostico', label:'Diagnóstico completado'},
+  {key:'listo', label:'Listos para estrategia'}, {key:'estrategia', label:'Estrategia generada'},
+  {key:'pdf', label:'PDF generado'}, {key:'entregado', label:'Entregados'},
+];
+function computeStats(list){
+  const idx = s=>STATE_ORDER.indexOf(s);
+  return {
+    total: list.length,
+    diagnostico: list.filter(a=>idx(a.estado)>=idx('diagnostico')).length,
+    estrategia: list.filter(a=>idx(a.estado)>=idx('estrategia')).length,
+    entregados: list.filter(a=>a.entregado).length,
+  };
+}
+function filterAssistants(list){
+  let out = list;
+  if(AdminState.filter!=='all') out = out.filter(a=>a.estado===AdminState.filter);
+  const q = AdminState.search.trim().toLowerCase();
+  if(q) out = out.filter(a=> (a.personal.nombre||'').toLowerCase().includes(q) || (a.negocio.nombre||'').toLowerCase().includes(q));
+  return out;
+}
+const Admin = {
+  setSearch(v){ AdminState.search=v; rerenderPreservingFocus(); },
+  setFilter(f){ AdminState.filter=f; render(); },
+  toggleSelect(id){ if(AdminState.selected.has(id)) AdminState.selected.delete(id); else AdminState.selected.add(id); render(); },
+  toggleSelectAll(ids){ const allSel = ids.every(id=>AdminState.selected.has(id)); if(allSel) ids.forEach(id=>AdminState.selected.delete(id)); else ids.forEach(id=>AdminState.selected.add(id)); render(); },
+  clearSelection(){ AdminState.selected.clear(); render(); },
+  async logout(){ await Auth.logout(); navigate('/'); },
+  async copyPrompt(id){
+    const a = NotionService.getAssistant(id); if(!a) return;
+    const ok = await copyToClipboard(SharingService.buildChatGPTPrompt(a));
+    if(!ok){ toast('No se pudo copiar automáticamente. Selecciona el texto manualmente.', 'danger'); return; }
+    toast('✓ Prompt copiado', 'good');
+    try{ await NotionService.updateAssistant(id, {estado: atLeastState(a.estado,'listo')}); render(); }
+    catch(e){ toast('El prompt se copió, pero no se pudo actualizar el estado: '+e.message, 'warn'); }
+  },
+  async markReady(id){
+    const a=NotionService.getAssistant(id); if(!a) return;
+    try{ await NotionService.updateAssistant(id,{estado: atLeastState(a.estado,'listo')}); toast('Marcado como listo para estrategia','good'); render(); }
+    catch(e){ toast('No se pudo actualizar: '+e.message, 'danger'); }
+  },
+  markDelivered(id){
+    showConfirm('¿Seguro que deseas marcar esta estrategia como entregada?', async ()=>{
+      try{
+        await NotionService.updateAssistant(id, {entregado:true, entregadoAt:new Date().toISOString(), estado:'entregado'});
+        toast('✓ Estrategia marcada como entregada','good'); render();
+      }catch(e){ toast('No se pudo marcar como entregada: '+e.message, 'danger'); }
+    }, {confirmLabel:'Sí, marcar como entregada'});
+  },
+  bulkCopyDiagnoses(){
+    const ids=[...AdminState.selected]; if(!ids.length) return;
+    const items = ids.map(id=>NotionService.getAssistant(id)).filter(Boolean);
+    const text = items.map(a=>Diagnostic.asText(a)).join('\n\n'+'='.repeat(48)+'\n\n');
+    offerTextExport('diagnosticos-marketing-aplatanao.txt', text, 'Diagnósticos descargados');
+  },
+  bulkCopyPrompts(){
+    const ids=[...AdminState.selected]; if(!ids.length) return;
+    const items = ids.map(id=>NotionService.getAssistant(id)).filter(Boolean);
+    const text = items.map(a=>'### '+a.personal.nombre+' — '+a.negocio.nombre+' ###\n\n'+SharingService.buildChatGPTPrompt(a)).join('\n\n'+'='.repeat(48)+'\n\n');
+    offerTextExport('prompts-chatgpt-marketing-aplatanao.txt', text, 'Prompts descargados');
+  },
+  async bulkPrepareStrategy(){
+    const ids=[...AdminState.selected]; if(!ids.length) return;
+    showConfirm('¿Marcar '+ids.length+' asistente(s) como "Listo para estrategia"?', async ()=>{
+      try{
+        await Promise.all(ids.map(id=>{ const a=NotionService.getAssistant(id); return a? NotionService.updateAssistant(id,{estado: atLeastState(a.estado,'listo')}) : null; }));
+        toast('✓ Asistentes actualizados','good'); Admin.clearSelection();
+      }catch(e){ toast('Algunos asistentes no se pudieron actualizar: '+e.message, 'danger'); render(); }
+    });
+  },
+  bulkExport(){
+    const ids=[...AdminState.selected]; if(!ids.length) return;
+    const items = ids.map(id=>NotionService.getAssistant(id)).filter(Boolean);
+    offerTextExport('asistentes-marketing-aplatanao.json', JSON.stringify(items,null,2), 'Datos exportados');
+  }
+};
+function offerTextExport(filename, text, successLabel){
+  try{
+    saveBlob(new Blob([text], {type:'text/plain;charset=utf-8'}), filename);
+    toast(successLabel, 'good');
+  }catch(e){
+    toast('No se pudo generar el archivo: '+e.message, 'danger');
+  }
+}
+
+function renderAdminDashboard(){
+  ensureListLoaded();
+  const list = NotionService.getAssistants();
+  const stats = computeStats(list);
+  const filtered = filterAssistants(list);
+  const ids = filtered.map(a=>a.id);
+  return '<div class="container page">'+
+    '<div class="admin-head"><div><span class="section-eyebrow">Marketing Aplatanao · Admin</span><h2 class="section-title">Panel de asistentes</h2></div>'+
+    '<div class="quick-actions">'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/\')">+ Nuevo asistente</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="Admin.setFilter(\'all\')">Ver todos</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="document.getElementById(\'searchInput\').focus()">Buscar</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/ajustes\')">Ajustes</button>'+
+    '</div></div>'+
+    '<div class="stats-grid">'+
+      statTile(stats.total,'Total asistentes')+statTile(stats.diagnostico,'Diagnósticos completados')+
+      statTile(stats.estrategia,'Estrategias generadas')+statTile(stats.entregados,'PDF entregados')+
+    '</div>'+
+    '<div class="filter-bar"><input id="searchInput" class="input search-input" placeholder="Buscar asistente o negocio..." value="'+esc(AdminState.search)+'" oninput="Admin.setSearch(this.value)">'+
+    '<div class="filter-chips">'+FILTERS.map(f=>'<button class="chip'+(AdminState.filter===f.key?' is-selected':'')+'" onclick="Admin.setFilter(\''+f.key+'\')">'+esc(f.label)+'</button>').join('')+'</div></div>'+
+    (AdminState.selected.size>0? renderBulkBar() : '')+
+    (APP.listError? '<div class="empty-state"><h3>No se pudo cargar el panel</h3><p>'+esc(APP.listError)+'</p><button class="btn btn-secondary" style="margin-top:14px;" onclick="retryListLoad()">Reintentar</button></div>'
+      : APP.listLoading && !APP.listLoaded? '<div class="empty-state"><h3>Cargando asistentes…</h3><p>Consultando tu base de Notion.</p></div>'
+      : filtered.length? ('<div class="table-wrap">'+renderAssistantsTable(filtered, ids)+'</div><div class="assistant-cards">'+filtered.map(renderAssistantCard).join('')+'</div>')
+      : (list.length===0? '<div class="empty-state"><h3>Todavía no hay asistentes</h3><p>En cuanto alguien complete el formulario del workshop, aparecerá aquí.</p></div>'
+        : '<div class="empty-state"><h3>No encontramos asistentes</h3><p>Ajusta la búsqueda o el filtro seleccionado.</p></div>'))+
+    '</div>';
+}
+function statTile(value, label){ return '<div class="stat-tile"><div class="stat-value">'+value+'</div><div class="stat-label">'+esc(label)+'</div></div>'; }
+function renderBulkBar(){
+  return '<div class="bulk-bar"><strong>'+AdminState.selected.size+' seleccionados</strong>'+
+    '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkCopyDiagnoses()">Descargar diagnósticos</button>'+
+    '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkCopyPrompts()">Copiar prompts</button>'+
+    '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkPrepareStrategy()">Preparar estrategias</button>'+
+    '<button class="btn btn-secondary btn-sm" onclick="Admin.bulkExport()">Exportar datos</button>'+
+    '<button class="btn btn-ghost btn-sm" onclick="Admin.clearSelection()" style="margin-left:auto;">Cancelar</button>'+
+  '</div>';
+}
+function renderAssistantsTable(list, ids){
+  const allSel = ids.length>0 && ids.every(id=>AdminState.selected.has(id));
+  return '<table class="assistants"><thead><tr>'+
+    '<th><input type="checkbox" class="select-check" '+(allSel?'checked':'')+' onchange="Admin.toggleSelectAll('+JSON.stringify(ids).replace(/"/g,'&quot;')+')"></th>'+
+    '<th>Nombre</th><th>Negocio</th><th>Plataforma</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>'+
+    list.map(a=>'<tr>'+
+      '<td><input type="checkbox" class="select-check" '+(AdminState.selected.has(a.id)?'checked':'')+' onchange="Admin.toggleSelect(\''+a.id+'\')"></td>'+
+      '<td class="name-cell"><strong>'+esc(a.personal.nombre)+'</strong></td>'+
+      '<td>'+esc(a.negocio.nombre)+'</td>'+
+      '<td class="muted">'+esc(a.presencia.plataformaPrincipal==='Otra'? a.presencia.plataformaPrincipalOtra : a.presencia.plataformaPrincipal)+'</td>'+
+      '<td class="muted mono">'+formatDate(a.fechaRegistro)+'</td>'+
+      '<td>'+stateBadge(a.estado)+'</td>'+
+      '<td>'+actionsRow(a)+'</td>'+
+    '</tr>').join('')+
+    '</tbody></table>';
+}
+function actionsRow(a){
+  return '<div class="actions-row">'+
+    '<button class="btn btn-ghost btn-sm" title="Ver" onclick="navigate(\'/admin/asistente/'+a.id+'\')">Ver</button>'+
+    '<button class="btn btn-ghost btn-sm" title="Diagnóstico" onclick="navigate(\'/admin/asistente/'+a.id+'/diagnostico\')">Diagnóstico</button>'+
+    '<button class="btn btn-ghost btn-sm" title="Copiar para ChatGPT" onclick="Admin.copyPrompt(\''+a.id+'\')">Copiar prompt</button>'+
+    '<button class="btn btn-ghost btn-sm" title="Generar estrategia" onclick="navigate(\'/admin/estrategia/'+a.id+'\')">Estrategia</button>'+
+    '<button class="btn btn-ghost btn-sm" title="PDF" onclick="navigate(\'/admin/pdf/'+a.id+'\')">PDF</button>'+
+    '<button class="btn btn-ghost btn-sm" title="Entregar" onclick="navigate(\'/admin/entrega/'+a.id+'\')">Entregar</button>'+
+  '</div>';
+}
+function renderAssistantCard(a){
+  return '<div class="a-card"><div class="a-card-top"><div><strong>'+esc(a.personal.nombre)+'</strong>'+
+    '<div class="small muted">'+esc(a.negocio.nombre)+' · '+esc(a.presencia.plataformaPrincipal==='Otra'? a.presencia.plataformaPrincipalOtra : a.presencia.plataformaPrincipal)+'</div></div>'+
+    '<input type="checkbox" class="select-check" '+(AdminState.selected.has(a.id)?'checked':'')+' onchange="Admin.toggleSelect(\''+a.id+'\')"></div>'+
+    '<div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;">'+stateBadge(a.estado)+'<span class="small muted mono">'+formatDate(a.fechaRegistro)+'</span></div>'+
+    '<div class="a-card-actions">'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/asistente/'+a.id+'\')">Ver</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="Admin.copyPrompt(\''+a.id+'\')">Copiar prompt</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/estrategia/'+a.id+'\')">Estrategia</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/pdf/'+a.id+'\')">PDF</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/entrega/'+a.id+'\')">Entregar</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/asistente/'+a.id+'/diagnostico\')">Diagnóstico</button>'+
+    '</div></div>';
+}
+
+/* ============================= ADMIN: PROFILE ============================= */
+let ProfileTab = 'resumen';
+const PROFILE_TABS = [['resumen','Personal'],['negocio','Negocio'],['presencia','Presencia digital'],['publico','Público'],['rendimiento','Rendimiento'],['voz','Voz'],['capacidad','Capacidad'],['objetivo','Objetivo Oct-Ene'],['oro','Preguntas de oro'],['diagnostico','Diagnóstico']];
+function renderAdminProfile(id, initialTab){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  if(initialTab) ProfileTab = initialTab;
+  return '<div class="container page">'+
+    '<button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin\')" style="margin-bottom:16px;">← Volver al panel</button>'+
+    '<div class="profile-head"><div class="profile-title"><h2 class="section-title" style="font-size:24px;">'+esc(a.personal.nombre)+'</h2></div>'+
+    '<div class="profile-actions">'+
+      '<button class="btn btn-secondary btn-sm" onclick="Admin.copyPrompt(\''+a.id+'\')">Copiar para ChatGPT</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/estrategia/'+a.id+'\')">Generar estrategia</button>'+
+      '<button class="btn btn-secondary btn-sm" onclick="navigate(\'/admin/pdf/'+a.id+'\')">PDF</button>'+
+      '<button class="btn btn-primary btn-sm" onclick="navigate(\'/admin/entrega/'+a.id+'\')">Entregar</button>'+
+    '</div></div>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;">'+stateBadge(a.estado)+'<span class="badge badge-neutral">'+esc(a.negocio.nombre)+'</span><span class="badge badge-neutral">'+esc(a.presencia.plataformaPrincipal==='Otra'? a.presencia.plataformaPrincipalOtra : a.presencia.plataformaPrincipal)+'</span></div>'+
+    '<div class="tabs">'+PROFILE_TABS.map(([k,l])=>'<button class="tab'+(ProfileTab===k?' is-active':'')+'" onclick="setProfileTab(\''+a.id+'\',\''+k+'\')">'+esc(l)+'</button>').join('')+'</div>'+
+    '<div class="card card-pad">'+renderProfileTabBody(a)+'</div>'+
+    '</div>';
+}
+function setProfileTab(id, tab){ ProfileTab = tab; render(); }
+function kv(k,v){ return '<div class="kv-row"><span class="k">'+esc(k)+'</span><span class="v">'+esc(val(v))+'</span></div>'; }
+function renderProfileTabBody(a){
+  if(ProfileTab==='resumen'){
+    return '<div class="kv-list">'+kv('Nombre completo',a.personal.nombre)+kv('WhatsApp',a.personal.whatsapp)+kv('Email',a.personal.email)+kv('Ciudad',a.personal.ciudad)+
+      kv('Instagram',a.personal.instagram)+kv('TikTok',a.personal.tiktok)+kv('Facebook',a.personal.facebook)+kv('Página web',a.personal.website)+'</div>';
+  }
+  if(ProfileTab==='negocio'){
+    return '<div class="kv-list">'+kv('Nombre del negocio',a.negocio.nombre)+kv('¿Qué vende?',a.negocio.queVendes)+kv('Producto/servicio estrella',a.negocio.productoEstrella)+
+      kv('Producto/servicio de mayor ganancia',a.negocio.productoMayorGanancia)+kv('Precio promedio',a.negocio.precioPromedio)+kv('Cliente ideal',a.negocio.clienteIdeal)+
+      kv('Problema/necesidad que resuelve',a.negocio.problemaResuelve)+kv('Por qué comprarle',a.negocio.porQueComprarte)+kv('Lo que más preguntan por WhatsApp/DM',a.negocio.preguntaFrecuenteWhatsapp)+
+      kv('Principal objeción', a.negocio.objecionPrincipal==='Otra'? a.negocio.objecionOtra : a.negocio.objecionPrincipal)+'</div>';
+  }
+  if(ProfileTab==='presencia'){
+    return '<div class="kv-list">'+kv('Plataforma principal', a.presencia.plataformaPrincipal==='Otra'? a.presencia.plataformaPrincipalOtra : a.presencia.plataformaPrincipal)+
+      kv('Otras plataformas',(a.presencia.otrasPlataformas||[]).join(', '))+kv('Seguidores actuales',a.presencia.seguidoresActuales)+kv('Cuentas que sigue',a.presencia.cuentasQueSigue)+
+      kv('Alcance (últimos 30 días)', a.presencia.alcanceConocido==='Conozco el dato de los últimos 30 días'? a.presencia.alcance30dias : 'No sabe dónde verlo')+'</div>';
+  }
+  if(ProfileTab==='publico'){
+    return '<div class="kv-list">'+kv('Género que más interactúa',a.publico.generoAudiencia)+kv('Rangos de edad principales',(a.publico.rangosEdad||[]).join(', '))+
+      kv('Ciudad/provincia/país del público',a.publico.ciudadPublico)+kv('¿Público actual = deseado?',a.publico.publicoActualEsDeseado)+
+      (a.publico.publicoActualEsDeseado==='No'? kv('A quién quiere atraer',a.publico.aQuienQuiereAtraer) : '')+'</div>';
+  }
+  if(ProfileTab==='rendimiento'){
+    return '<div class="kv-list">'+kv('¿Reels con +10,000 reproducciones?',a.rendimiento.reelsSuperan10k)+
+      (a.rendimiento.reelsSuperan10k==='Sí'? kv('Cuántos en los últimos 90 días',a.rendimiento.cuantosReels10k) : '')+
+      kv('Mejor Reel (reproducciones)',a.rendimiento.mejorReelReproducciones)+
+      kv('Tipo de contenido de ese Reel', a.rendimiento.tipoContenidoMejorReel==='Otro'? a.rendimiento.tipoContenidoMejorReelOtro : a.rendimiento.tipoContenidoMejorReel)+
+      kv('Promedio de reproducciones', a.rendimiento.promedioConocido==='Conozco el promedio'? a.rendimiento.promedioReproducciones : 'No lo sabe')+'</div>';
+  }
+  if(ProfileTab==='voz'){
+    return '<div class="kv-list">'+kv('Forma de hablar',(a.voz.formaHablar||[]).join(', '))+kv('Frases que dice muchísimo',a.voz.frasesQueDices)+
+      kv('Cómo respondería a una clienta',a.voz.comoResponderiasCliente)+kv('"Si mi mejor amiga quisiera comprarme esto..."',a.voz.completaFrase)+
+      kv('Tipo de contenido que le gusta crear',(a.voz.tipoContenidoQueGusta||[]).join(', '))+'</div>';
+  }
+  if(ProfileTab==='capacidad'){
+    return '<div class="kv-list">'+kv('Días a la semana disponibles',a.capacidad.diasPorSemana)+kv('Tiempo diario disponible',a.capacidad.tiempoDiario)+
+      kv('Recursos disponibles',(a.capacidad.recursosDisponibles||[]).join(', '))+'</div>';
+  }
+  if(ProfileTab==='objetivo'){
+    return '<div class="kv-list">'+kv('Objetivo principal (oct-ene)', a.objetivo.objetivoPrincipal==='Otro'? a.objetivo.objetivoOtro : a.objetivo.objetivoPrincipal)+
+      kv('Temporadas de interés',(a.objetivo.temporadaInteres||[]).join(', '))+kv('¿Promociones especiales?',a.objetivo.promocionesEspeciales)+
+      (a.objetivo.promocionesEspeciales==='Sí'? kv('Qué tiene pensado',a.objetivo.queTienesPensado) : '')+'</div>';
+  }
+  if(ProfileTab==='oro'){
+    return '<div class="kv-list">'+kv('Lo que más le enorgullece',a.oro.orgullo)+kv('Error de inicio que no repetiría',a.oro.errorInicio)+
+      kv('Mito de su industria',a.oro.mitoIndustria)+kv('Pregunta que ya no quiere que le hagan',a.oro.preguntaQueNoQuiereMas)+
+      kv('Qué quiere que piensen al ver su contenido',a.oro.percepcionPrimeraImpresion)+'</div>';
+  }
+  if(ProfileTab==='diagnostico'){
+    const d = a.diagnostico;
+    if(!d) return '<div class="empty-state"><h3>Sin diagnóstico</h3><p>Este asistente aún no tiene un diagnóstico generado.</p></div>';
+    return '<div class="prompt-toolbar"><span class="section-eyebrow">Diagnóstico de marketing</span><button class="btn btn-secondary btn-sm" onclick="copyDiagnosis(\''+a.id+'\')">Copiar diagnóstico</button></div>'+
+      diagBlock('1. Situación actual', d.situacionActual)+diagBlock('2. Principal oportunidad', d.oportunidad)+diagBlock('3. Principal problema', d.problema)+
+      diagBlock('4. Cliente objetivo', d.clienteObjetivo)+diagBlock('5. Posicionamiento recomendado', d.posicionamiento)+
+      '<div class="diag-block"><h4>6. Pilares de contenido sugeridos</h4><ul style="margin:0;padding-left:18px;">'+d.pilares.map(p=>'<li style="margin-bottom:6px;font-size:14.5px;">'+esc(p)+'</li>').join('')+'</ul></div>'+
+      diagBlock('7. Tipo de contenido recomendado', d.tipoContenido)+diagBlock('8. Oportunidades de crecimiento', d.oportunidadesCrecimiento)+diagBlock('9. Prioridades para los próximos 90 días', d.prioridades90);
+  }
+  return '';
+}
+function diagBlock(title, text){ return '<div class="diag-block"><h4>'+esc(title)+'</h4><p>'+esc(text)+'</p></div>'; }
+function copyDiagnosis(id){ const a=NotionService.getAssistant(id); copyToClipboard(Diagnostic.asText(a)).then(ok=> toast(ok?'✓ Diagnóstico copiado':'No se pudo copiar', ok?'good':'danger')); }
+
+/* ============================= ADMIN: STRATEGY GENERATOR ============================= */
+function renderStrategyGenerator(id){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  const prompt = SharingService.buildChatGPTPrompt(a);
+  return '<div class="container page">'+
+    '<button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin/asistente/'+a.id+'\')" style="margin-bottom:16px;">← Volver al perfil</button>'+
+    '<span class="section-eyebrow">Generar estrategia</span><h2 class="section-title">'+esc(a.personal.nombre)+'</h2>'+
+    '<div class="pill-list" style="margin-top:12px;"><span class="pill">'+esc(a.negocio.nombre)+'</span><span class="pill">'+esc(a.presencia.plataformaPrincipal==='Otra'?a.presencia.plataformaPrincipalOtra:a.presencia.plataformaPrincipal)+'</span><span class="pill">'+esc(a.objetivo.objetivoPrincipal==='Otro'?a.objetivo.objetivoOtro:a.objetivo.objetivoPrincipal)+'</span></div>'+
+    '<div class="card card-pad" style="margin-top:22px;">'+
+      '<div class="prompt-toolbar"><h4>Prompt para ChatGPT</h4><button class="btn btn-primary btn-sm" onclick="Admin.copyPrompt(\''+a.id+'\')">Copiar para ChatGPT</button></div>'+
+      '<div class="prompt-box" id="promptBox">'+esc(prompt)+'</div>'+
+      '<div class="integration-note" style="margin-top:16px;"><span>🤖</span><div><b>Generar con IA</b> envía este prompt a tu backend, que lo reenvía a OpenAI y trae la estrategia completa de vuelta, ya dividida en las 14 secciones del editor. Si el servidor todavía no tiene la API key de OpenAI configurada, verás un aviso — mientras tanto usa "Copiar para ChatGPT" y pégalo manualmente.</div></div>'+
+      '<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;"><button class="btn btn-primary" onclick="Admin.copyPrompt(\''+a.id+'\')">Copiar prompt</button>'+
+      '<button class="btn btn-secondary" id="btnGenerarIA" onclick="tryGenerateWithAI(\''+a.id+'\', this)">Generar con IA</button>'+
+      '<button class="btn btn-dark" onclick="navigate(\'/admin/editor/'+a.id+'\')">Ir al editor de estrategia →</button></div>'+
+    '</div></div>';
+}
+async function tryGenerateWithAI(id, btnEl){
+  const a = NotionService.getAssistant(id); if(!a) return;
+  const original = btnEl ? btnEl.textContent : '';
+  if(btnEl){ btnEl.disabled = true; btnEl.textContent = 'Generando… (puede tardar ~30s)'; }
+  try{
+    const prompt = SharingService.buildChatGPTPrompt(a);
+    const r = await AIService.generateStrategy(prompt);
+    if(!r.ok){ toast(r.message, 'warn'); return; }
+    ensureEditorState(id);
+    EditorState.sections = Object.assign(StrategyModule.emptySections(), StrategyModule.splitPasted(r.text));
+    toast('✓ Estrategia generada con IA — revísala en el editor','good');
+    navigate('/admin/editor/'+id);
+  }catch(e){
+    toast(e.message || 'No se pudo generar la estrategia.', 'danger');
+  }finally{
+    if(btnEl){ btnEl.disabled = false; btnEl.textContent = original; }
+  }
+}
+
+/* ============================= ADMIN: STRATEGY EDITOR ============================= */
+let EditorState = { id:null, sections:null, pasteBuffer:'' };
+function ensureEditorState(id){
+  if(EditorState.id !== id){
+    const a = NotionService.getAssistant(id);
+    EditorState = { id, sections: Object.assign(StrategyModule.emptySections(), (a && a.estrategia && a.estrategia.sections)||{}), pasteBuffer:'' };
+  }
+}
+function renderStrategyEditor(id){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  ensureEditorState(id);
+  return '<div class="container page">'+
+    '<button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin/asistente/'+a.id+'\')" style="margin-bottom:16px;">← Volver al perfil</button>'+
+    '<span class="section-eyebrow">Estrategia de contenido</span><h2 class="section-title">'+esc(a.personal.nombre)+'</h2><p class="muted" style="margin-top:4px;">'+esc(a.negocio.nombre)+'</p>'+
+    '<div class="card card-pad" style="margin:22px 0;">'+
+      '<h4 style="margin-bottom:10px;">Pegar estrategia completa de ChatGPT</h4>'+
+      '<textarea class="textarea" id="pasteBuffer" style="min-height:120px;" placeholder="Pega aquí toda la respuesta de ChatGPT..." oninput="EditorState.pasteBuffer=this.value"></textarea>'+
+      '<button class="btn btn-secondary btn-sm" style="margin-top:10px;" onclick="splitPaste()">Dividir automáticamente en 14 secciones</button>'+
+      '<p class="hint" style="margin-top:8px;">Detecta encabezados como "Hooks", "Reels", "Calendario"... Revisa siempre el resultado, es un ayudante, no magia perfecta.</p>'+
+    '</div>'+
+    SECTION_DEFS.map(renderEditorAccordion).join('')+
+    '<div style="display:flex;gap:10px;margin-top:20px;"><button class="btn btn-primary" id="btnGuardarEstrategia" onclick="saveStrategyEditor(\''+a.id+'\', this)">Guardar estrategia</button>'+
+    '<button class="btn btn-secondary" onclick="navigate(\'/admin/pdf/'+a.id+'\')">Ir a PDF →</button></div>'+
+    '</div>';
+}
+function renderEditorAccordion(def){
+  const open = def._open===undefined? (def.key==='diagnostico') : def._open;
+  const value = EditorState.sections[def.key] || '';
+  return '<div class="accordion-item'+(open?' is-open':'')+'" id="acc_'+def.key+'">'+
+    '<div class="accordion-head" onclick="toggleAccordion(\''+def.key+'\')"><span class="accordion-num">'+def.num+'</span><h4>'+esc(def.title)+'</h4><span class="accordion-chev">▾</span></div>'+
+    '<div class="accordion-body"><textarea class="textarea" style="min-height:120px;" id="ta_'+def.key+'" placeholder="Contenido de la sección \''+esc(def.title)+'\'..." oninput="EditorState.sections[\''+def.key+'\']=this.value">'+esc(value)+'</textarea></div>'+
+  '</div>';
+}
+function toggleAccordion(key){ const el = document.getElementById('acc_'+key); if(el) el.classList.toggle('is-open'); }
+function splitPaste(){
+  const parsed = StrategyModule.splitPasted(EditorState.pasteBuffer);
+  EditorState.sections = Object.assign(StrategyModule.emptySections(), EditorState.sections, parsed);
+  toast('Contenido dividido — revisa cada sección','good');
+  render();
+}
+async function saveStrategyEditor(id, btnEl){
+  const current = NotionService.getAssistant(id);
+  const original = btnEl ? btnEl.textContent : '';
+  if(btnEl){ btnEl.disabled = true; btnEl.textContent = 'Guardando…'; }
+  try{
+    await NotionService.updateAssistant(id, {
+      estrategia:{ sections: Object.assign({}, EditorState.sections), savedAt:new Date().toISOString() },
+      estado: atLeastState(current.estado, 'estrategia'),
+    });
+    toast('✓ Estrategia guardada','good'); render();
+  }catch(e){
+    toast('No se pudo guardar: '+e.message, 'danger');
+  }finally{
+    if(btnEl){ btnEl.disabled = false; btnEl.textContent = original; }
+  }
+}
+
+/* ============================= ADMIN: PDF ============================= */
+function renderPdfView(id){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  const chapters = PDFModule.buildDocument(a);
+  return '<div class="container page">'+
+    '<div class="print-toolbar no-print"><button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin/asistente/'+a.id+'\')">← Volver al perfil</button>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;">'+
+      '<button class="btn btn-secondary" id="btnGenerarPdf" onclick="downloadPdf(\''+a.id+'\', true, this)">Generar PDF</button>'+
+      '<button class="btn btn-primary" id="btnDescargarPdf" onclick="downloadPdf(\''+a.id+'\', true, this)">Descargar PDF</button>'+
+    '</div></div>'+
+    '<div class="integration-note no-print" style="margin-bottom:20px;"><span>✅</span><div>Este botón genera un PDF real en el servidor (con Puppeteer) y lo descarga a tu computadora. Cada clic vuelve a generarlo con los datos más recientes.</div></div>'+
+    (a.pdf && a.pdf.status==='generado'? '<p class="small muted no-print" style="margin-bottom:14px;">Generado por última vez el '+formatDate(a.pdf.generatedAt)+'.</p>' : '')+
+    '<div class="doc-sheet">'+
+      '<div class="doc-cover"><div class="brand-mark">🍌</div><div class="doc-kicker">Marketing Aplatanao</div><h1>Estrategia de<br>Contenido</h1>'+
+      '<div class="doc-for">Preparada para</div><div class="doc-name">'+esc(a.personal.nombre)+'</div><div class="doc-biz">'+esc(a.negocio.nombre)+'</div>'+
+      '<div class="doc-date">'+formatDate(new Date().toISOString())+'</div></div>'+
+      chapters.map(ch=>'<div class="doc-chapter"><div class="doc-chapter-kicker">'+esc(ch.kicker)+'</div><h2>'+esc(ch.title)+'</h2>'+
+        ch.sections.map(s=>'<div class="doc-section"><h3>'+esc(s.h)+'</h3><p class="txt">'+esc(s.t && s.t.trim()? s.t : 'Pendiente — completa esta sección en el editor de estrategia.')+'</p></div>').join('')+
+      '</div>').join('')+
+      '<div class="doc-footer"><span>Marketing Aplatanao — Content Strategy Hub</span><span>'+esc(a.personal.nombre)+' · '+esc(a.negocio.nombre)+'</span></div>'+
+    '</div></div>';
+}
+function slugify(s){ return String(s||'estrategia').toLowerCase().normalize('NFD').replace(/[^\w\s-]/g,'').trim().replace(/\s+/g,'-') || 'estrategia'; }
+function saveBlob(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+  a.remove(); setTimeout(()=>URL.revokeObjectURL(url), 4000);
+}
+async function downloadPdf(id, isAdmin, btnEl){
+  const original = btnEl ? btnEl.textContent : '';
+  if(btnEl){ btnEl.disabled = true; btnEl.textContent = 'Generando…'; }
+  try{
+    const res = await fetch((isAdmin? '/api/pdf/' : '/api/pdf/')+encodeURIComponent(id), { method: isAdmin?'POST':'GET', credentials:'same-origin' });
+    if(!res.ok){
+      let msg = 'No se pudo generar el PDF.';
+      try{ msg = (await res.json()).error || msg; }catch(e){}
+      throw new Error(msg);
+    }
+    const blob = await res.blob();
+    const a = NotionService.getAssistant(id);
+    saveBlob(blob, 'estrategia-'+slugify(a && a.negocio && a.negocio.nombre)+'.pdf');
+    if(isAdmin){
+      await NotionService.fetchAssistant(id);
+      toast('✓ PDF generado y descargado','good');
+      render();
+    } else {
+      toast('✓ PDF descargado','good');
+    }
+  }catch(e){
+    toast(e.message || 'No se pudo generar el PDF.', 'danger');
+  } finally {
+    if(btnEl){ btnEl.disabled = false; btnEl.textContent = original; }
+  }
+}
+
+/* ============================= ADMIN: DELIVER ============================= */
+function renderDeliver(id){
+  const a = ensureAssistantLoaded(id);
+  if(!a) return APP.fetchError[id] ? renderFetchError(id) : renderLoadingState();
+  const link = SharingService.publicLink(a.id);
+  const msg = SharingService.whatsappMessage(a);
+  return '<div class="container page">'+
+    '<button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin/asistente/'+a.id+'\')" style="margin-bottom:16px;">← Volver al perfil</button>'+
+    '<span class="section-eyebrow">Entregar estrategia</span><h2 class="section-title">'+esc(a.personal.nombre)+'</h2>'+
+    '<div class="deliver-grid" style="margin-top:22px;">'+
+      '<div class="card card-pad"><h4 style="margin-bottom:14px;">Datos de contacto</h4>'+
+        kv('Nombre',a.personal.nombre)+kv('WhatsApp',a.personal.whatsapp)+kv('Email',a.personal.email)+
+        kv('Archivo', (a.pdf&&a.pdf.status==='generado')? 'PDF generado el '+formatDate(a.pdf.generatedAt) : 'PDF no generado aún')+
+        '<div style="margin-top:16px;"><button class="btn btn-secondary btn-sm" onclick="copyLink(\''+a.id+'\')">Copiar link</button></div>'+
+      '</div>'+
+      '<div class="card card-pad"><h4 style="margin-bottom:14px;">Mensaje de WhatsApp</h4><div class="wa-preview">'+nl2br(msg)+'</div>'+
+        '<button class="btn btn-primary btn-sm" style="margin-top:14px;" onclick="copyWaMessage(\''+a.id+'\')">Copiar mensaje WhatsApp</button>'+
+      '</div>'+
+    '</div>'+
+    '<div style="margin-top:22px;">'+stateBadge(a.estado)+'</div>'+
+    '<button class="btn '+(a.entregado?'btn-secondary':'btn-primary')+'" style="margin-top:18px;" '+(a.entregado?'disabled':'')+' onclick="Admin.markDelivered(\''+a.id+'\')">'+(a.entregado? '✓ Ya entregado':'Marcar como entregado')+'</button>'+
+    '</div>';
+}
+function copyLink(id){ copyToClipboard(SharingService.publicLink(id)).then(ok=> toast(ok?'✓ Link copiado':'No se pudo copiar', ok?'good':'danger')); }
+function copyWaMessage(id){ const a=NotionService.getAssistant(id); copyToClipboard(SharingService.whatsappMessage(a)).then(ok=> toast(ok?'✓ Mensaje copiado':'No se pudo copiar', ok?'good':'danger')); }
+
+/* ============================= ADMIN: SETTINGS ============================= */
+function ensureHealthLoaded(){
+  if(APP.health || APP.healthLoading) return;
+  APP.healthLoading = true;
+  apiFetch('/api/health').then(h=>{ APP.health = h; }).catch(e=>{ APP.health = {ok:false, error:e.message}; }).finally(()=>{ APP.healthLoading=false; render(); });
+}
+function statusBadge(connected){ return connected? '<span class="badge badge-good">Conectado</span>' : '<span class="badge badge-danger">Desconectado</span>'; }
+function renderAdminSettings(){
+  ensureHealthLoaded();
+  const h = APP.health || {};
+  return '<div class="container page">'+
+    '<button class="btn btn-ghost btn-sm" onclick="navigate(\'/admin\')" style="margin-bottom:16px;">← Volver al panel</button>'+
+    '<span class="section-eyebrow">Ajustes</span><h2 class="section-title">Integraciones</h2>'+
+    '<div class="settings-grid" style="margin-top:22px;">'+
+      '<div class="card card-pad">'+
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;"><h3 style="font-size:18px;">Notion Database</h3>'+statusBadge(h.notionConfigured)+'</div>'+
+        '<p class="small muted" style="margin-top:8px;">Base de datos objetivo: <strong>"'+esc(NotionService.DATABASE_NAME)+'"</strong>. Cada asistente corresponde a una página de esta base.</p>'+
+        '<div class="integration-note" style="margin-top:16px;"><span>🔒</span><div>El token de la integración de Notion vive únicamente en las variables de entorno del servidor (<span class="mono">NOTION_API_KEY</span>, <span class="mono">NOTION_DATABASE_ID</span>) — no se configura ni se ve desde aquí.'+(h.notionConfigured?' Está configurado y respondiendo.':' Todavía falta configurarlo en el servidor.')+'</div></div>'+
+        '<hr class="rule">'+
+        '<h4 style="margin-bottom:8px;">Propiedades del espejo legible en Notion</h4>'+
+        '<div style="overflow-x:auto;"><table class="prop-table"><thead><tr><th>Propiedad</th><th>Tipo</th></tr></thead><tbody>'+
+          NotionService.PROPERTIES.map(p=>'<tr><td>'+esc(p[0])+'</td><td class="mono">'+esc(p[1])+'</td></tr>').join('')+
+        '</tbody></table></div>'+
+      '</div>'+
+      '<div class="card card-pad">'+
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;"><h3 style="font-size:18px;">OpenAI / ChatGPT</h3>'+statusBadge(h.openaiConfigured)+'</div>'+
+        '<p class="small muted" style="margin-top:8px;">'+(h.openaiConfigured? 'El botón "Generar con IA" llama a OpenAI real desde el servidor.' : 'Falta configurar OPENAI_API_KEY en el servidor — mientras tanto, usa "Copiar para ChatGPT".')+'</p>'+
+        '<div class="integration-note" style="margin-top:16px;"><span>🔒</span><div>El API key de OpenAI vive solo en <span class="mono">OPENAI_API_KEY</span> en el servidor.</div></div>'+
+      '</div>'+
+      '<div class="card card-pad">'+
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;"><h3 style="font-size:18px;">Acceso admin</h3>'+statusBadge(h.adminConfigured)+'</div>'+
+        '<p class="small muted" style="margin-top:8px;">Contraseña compartida validada en el servidor (<span class="mono">ADMIN_PASSWORD</span>), con sesión firmada por cookie.</p>'+
+      '</div>'+
+    '</div></div>';
+}
+
+/* ============================= NOT FOUND ============================= */
+function renderNotFound(){
+  return '<div class="container page"><div class="empty-state"><h3>No encontramos esta página</h3><p>Vuelve al inicio para continuar.</p>'+
+    '<button class="btn btn-primary" style="margin-top:14px;" onclick="navigate(\'/\')">Ir al inicio</button></div></div>';
+}
+function renderFetchError(id){
+  return '<div class="container page"><div class="empty-state"><h3>No se pudo cargar</h3><p>'+esc(APP.fetchError[id]||'Ocurrió un error.')+'</p>'+
+    '<button class="btn btn-secondary" style="margin-top:14px;" onclick="retryAssistantLoad(\''+id+'\')">Reintentar</button></div></div>';
+}
+
+/* ============================= ROUTER / RENDER ============================= */
+function navigate(path){ location.hash = '#'+path; render(); }
+function rerenderPreservingFocus(){
+  const active = document.activeElement;
+  const id = active && active.id;
+  const hasSel = active && ('selectionStart' in active);
+  const selStart = hasSel? active.selectionStart : null;
+  const selEnd = hasSel? active.selectionEnd : null;
+  render();
+  if(id){
+    const el = document.getElementById(id);
+    if(el){ el.focus(); if(selStart!=null && el.setSelectionRange){ try{ el.setSelectionRange(selStart, selEnd); }catch(e){} } }
+  }
+}
+function render(){
+  const app = document.getElementById('app');
+  const hash = location.hash.slice(1) || '/';
+  const segs = hash.split('/').filter(Boolean);
+  let html = '';
+  if(segs.length===0){ html = renderLanding(); }
+  else if(segs[0]==='form'){ html = renderForm(); }
+  else if(segs[0]==='confirmacion'){ html = renderConfirmation(segs[1]); }
+  else if(segs[0]==='estrategia'){ html = renderPublicStrategy(segs[1]); }
+  else if(segs[0]==='admin'){
+    if(!APP.authChecked){ ensureAuthChecked(); html = renderLoadingState('Verificando tu sesión…'); }
+    else if(!Auth.isAdmin()){ html = renderAdminGate(); }
+    else if(!segs[1]){ html = renderAdminDashboard(); }
+    else if(segs[1]==='asistente'){ html = renderAdminProfile(segs[2], segs[3]); }
+    else if(segs[1]==='estrategia'){ html = renderStrategyGenerator(segs[2]); }
+    else if(segs[1]==='editor'){ html = renderStrategyEditor(segs[2]); }
+    else if(segs[1]==='pdf'){ html = renderPdfView(segs[2]); }
+    else if(segs[1]==='entrega'){ html = renderDeliver(segs[2]); }
+    else if(segs[1]==='ajustes'){ html = renderAdminSettings(); }
+    else { html = renderNotFound(); }
+  } else { html = renderNotFound(); }
+  app.innerHTML = '<div class="topbar">'+renderTopbar()+'</div>'+html;
+}
+window.addEventListener('hashchange', render);
+
+/* ============================= INIT ============================= */
+render();
+</script>
+</body>
+</html>
